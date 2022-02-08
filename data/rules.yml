@@ -1,0 +1,92 @@
+version: "2.0"
+rules:
+
+
+
+  - rule: eres bot?
+    steps:
+      - action: action_ask_question
+      - intent: eres_humano
+      - action: utter_bot
+      - action: action_ask_question2
+      - action: action_ask_question
+      
+  - rule: fallback
+    steps:
+      - intent: out_of_scope
+      - action: utter_default
+#      - action: action_ask_question3
+#      - action: action_hello
+
+  - rule: fallback2
+    steps:
+      - action: action_hello
+      - intent: out_of_scope
+      - action: action_hello
+
+  - rule: fallback3
+    steps:
+      - action: action_ask_question
+      - intent: out_of_scope
+      - action: action_ask_question
+
+  - rule: fallback4
+    steps:
+      - action: action_conoce
+      - intent: out_of_scope
+      - action: action_conoce
+
+  - rule: pregunta fecha
+    steps:
+      - intent: que_fecha
+      - action: action_fecha
+#      - action: action_ask_question2
+#      - action: action_ask_question
+
+  - rule: pregunta monto
+    steps:
+      - intent: preguntar_monto
+      - action: action_monto
+#      - action: action_ask_question2
+#      - action: action_ask_question
+
+  - rule: pregunta nombre
+    steps:
+      - intent: preguntar_nombre
+      - action: action_quien
+#      - action: action_ask_question2
+#      - action: action_hello
+
+  - rule: de que parte llama
+    steps:
+      - action: action_hello
+      - intent: de_donde
+      - action: action_donde
+      - action: action_hello2
+
+  - rule: de que parte llama
+    steps:
+      - action: action_ask_question
+      - intent: de_donde
+      - action: action_donde2
+      
+
+  - rule: Confirm that the bot is not a human
+    steps:
+      - intent: soy_yo
+      - action: action_ask_question
+   
+  - rule: despedida
+    steps:
+      - intent: despedida
+      - action: utter_despedida
+      - action: action_recibir_es_o_no
+      - action: action_guardar_conoce_o_no
+      - action: action_recibir_paga_o_no
+      - action: action_autoriza_o_no
+      - action: action_final
+      - action: action_restart2  
+
+   
+
+  

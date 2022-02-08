@@ -1,0 +1,20 @@
+
+ 
+__init__.py:  un archivo vacío que ayuda a Python a localizar sus acciones.
+    
+actions.py: este archivo se utiliza para crear acciones personalizadas. En caso de que desee llamar a un servidor externo o obtener datos de API externos, puede definir sus acciones aquí.
+    
+config.yml : este archivo define la configuración de la NLU y el modelo central. Si está utilizando cualquier modelo fuera del modelo NLU, debe definir la tubería aquí.
+    
+credentials.yml : este archivo se utiliza para almacenar credenciales para conectarse a servicios externos como Facebook Messenger, Slack, etc.
+    
+data / nlu.md : En este archivo, definimos nuestras intenciones(¿qué podría pedirle el usuario al bot que haga?). Estos intentos se utilizan luego para entrenar el modelo NLU.
+    
+data / stories.md : las historias son la conversación de muestra entre un usuario y un bot en forma de intenciones, respuestas y acciones. Las historias de Rasa son una forma de datos de entrenamiento que se utilizan para entrenar los modelos de gestión del diálogo de Rasa.
+    
+domain.yml : este archivo enumera las diferentes intenciones(las cosas que espera del usuario) con las respuestas y acciones del bot que puede realizar.
+    
+endpoints.yml : Esto define los detalles para conectar canales como Slack, FB messenger, etc. para almacenar datos de chats en bases de datos en línea como Redis, etc.
+    
+models / <timestamps> .tar.gz : el modelo inicial, todos los modelos entrenados almacenados en la carpeta de modelos. Para reentrenar el modelo, usamos el comando de tren rasa .
+

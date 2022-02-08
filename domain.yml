@@ -1,0 +1,94 @@
+version: '2.0'
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+intents:
+- negación
+- afirmación
+- saludos
+- de_donde
+- que_fecha
+- preguntar_nombre
+- out_of_scope
+- eres_humano
+- despedida
+- preguntar_monto
+- soy_yo
+entities:
+- respuesta
+slots:
+  es_o_no:
+    type: text
+    influence_conversation: false
+  conoce_o_no:
+    type: text
+    influence_conversation: false
+  autoriza_o_no:
+    type: text
+    influence_conversation: false
+  pagará_o_no:
+    type: text
+    influence_conversation: false
+responses:
+  utter_default:
+  - text: Disculpe, no logré escuchar ¿Sería tan amable de responder con un si o un no?
+  utter_default_repetir:
+  - text: Disculpe, no le entendí ¿Me podrá repetir lo dicho?
+  utter_despedida:
+  - text: Muchas gracias por su tiempo, que tenga un buen día.
+  utter_bot:
+  - text: Soy Eva, un asistente virtual.
+  utter_pregunta_contactar_ejecutivo:
+  - text: ¿Desea que uno de nuestros ejecutivos se contacte con usted para poder entregarle otras alternativas?
+actions:
+- action_ask_question
+- action_ask_question2
+- action_ask_question3
+- action_autoriza_o_no
+- action_conoce
+- action_contactar
+- action_dar_hora
+- action_donde
+- action_donde2
+- action_enviar_slots
+- action_fecha
+- action_final
+- action_guardar_conoce_o_no
+- action_hello
+- action_hello2
+- action_monto
+- action_quien
+- action_recibir_es_o_no
+- action_recibir_paga_o_no
+- action_request
+- action_restart2
+- action_say_reason
+- action_si_conoce
+- action_si_paga
+- action_tracker_id
+- utter_bot
+- utter_default
+- utter_default_repetir
+- utter_despedida
+- utter_pregunta_contactar_ejecutivo
+forms:
+  persona_form:
+    required_slots:
+      es_o_no:
+      - entity: respuesta
+        type: from_entity
+  lo_conoce_form:
+    required_slots:
+      conoce_o_no:
+      - entity: respuesta
+        type: from_entity
+  autoriza_form:
+    required_slots:
+      autoriza_o_no:
+      - entity: respuesta
+        type: from_entity
+  paga_form:
+    required_slots:
+      pagará_o_no:
+      - entity: respuesta
+        type: from_entity
