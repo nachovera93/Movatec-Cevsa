@@ -47,6 +47,8 @@ actions:
 - action_autoriza_o_no
 - action_conoce
 - action_contactar
+- action_despedida
+- action_no_paga
 - action_dar_hora
 - action_donde
 - action_donde2

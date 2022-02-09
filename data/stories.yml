@@ -151,7 +151,7 @@ stories:
     - slot_was_set:
       - requested_slot: null
     - active_loop: null
-    - action: utter_despedida
+    - action: action_despedida
     - action: action_recibir_es_o_no
     - action: action_recibir_paga_o_no
     - action: action_autoriza_o_no
@@ -184,7 +184,7 @@ stories:
     - slot_was_set:
       - requested_slot: null
     - active_loop: null
-    - action: utter_pregunta_contactar_ejecutivo
+    - action: action_no_paga
     - intent: negación
       entities:
       - respuesta: no
@@ -195,7 +195,7 @@ stories:
     - slot_was_set:
       - requested_slot: null
     - active_loop: null
-    - action: utter_despedida
+    - action: action_despedida
     - action: action_recibir_es_o_no
     - action: action_recibir_paga_o_no
     - action: action_autoriza_o_no
@@ -228,7 +228,7 @@ stories:
     - slot_was_set:
       - requested_slot: null
     - active_loop: null
-    - action: utter_pregunta_contactar_ejecutivo
+    - action: action_no_paga
     - intent: afirmación
       entities:
       - respuesta: si

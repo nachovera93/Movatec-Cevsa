@@ -36,12 +36,15 @@
 </head>
 
 <body>
-
+     <section>
+        <h1>Movatín</h1>
+        <p></p>
+    </section>
     <div id="chat-container"></div>
     <script src="./chatbot-ui.js"></script>
     <script>
-        createChatBot(host = 'http://localhost:5005/webhooks/rest/webhook', botLogo = "./imgs/bot.png",
-            title = "Eva Bot", welcomeMessage = "Hola soy Eva, que necesitas?", inactiveMsg = "El servicio no está disponible en estos momentos.", theme = "purple")
+        createChatBot(host = 'http://45.228.211.133:5002/webhooks/rest/webhook', botLogo = "./imgs/bot.png",
+            title = "Eva Bot", welcomeMessage = "Escribe ..", inactiveMsg = "El servicio no está disponible en estos momentos.", theme = "purple")
     </script>
 
 

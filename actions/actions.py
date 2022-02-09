@@ -7,8 +7,22 @@ from rasa_sdk.events import SlotSet
 from rasa_sdk.events import Restarted
 import mysql.connector
 import pymysql
-
-
+global SiPaga
+global NoPaga
+global razon
+global tipo_contacto
+global compromiso_p
+global derivacion
+global fecha_com
+global entrega_info
+SiPaga=None
+NoPaga=None
+razon=None
+tipo_contacto=None
+compromiso_p=None
+derivacion=None
+fecha_com=None
+entrega_info=None
 class DataBase:
     def __init__(self):
         self.connection=pymysql.connect(host='172.16.1.141',
@@ -20,7 +34,7 @@ class DataBase:
         print("Conexion exitosa!")
 
     def select_user(self, uniqueid):
-        sql = "select T0.vendor_lead_code, T0.first_name,T0.address1,T0.lead_id,T0.address2,T0.city,T0.owner,T1.list_name from vicidial_list T0 inner join vicidial_lists T1 on T0.list_id=T1.list_id where T0.lead_id = '{}'".format(uniqueid)
+        sql = "select T0.vendor_lead_code, T0.first_name,T0.address1,T0.lead_id,T0.address2,T0.city,T0.owner,T1.list_name,T2.campaign_name from vicidial_list T0 inner join vicidial_lists T1 on T0.list_id=T1.list_id inner join vicidial_campaigns T2 on T1.campaign_id=T2.campaign_id where T0.lead_id = '{}'".format(uniqueid)
         
         try:
             self.cursor.execute(sql)
@@ -28,17 +42,18 @@ class DataBase:
             global monto
             global nombre
             global fechaVencimiento
-            global campaña
-            monto = user[4]
+            global Campania
+            monto = user[3]
             nombre = user[2]
             fechaVencimiento = user[5]
-            campaña = user[7]
+            Campania = user[8]
             print("user: ", user)
             print("Rut:" , user[0])
-            print("Nombre:" , user[2])
-            print("Deuda monto:" , user[4])
-            print("fecha Vencimiento: " , user[5])
-            print("campaña: " , user[7])
+            print("Nombre:" , nombre)
+            print("Deuda monto:" , monto)
+            print("fecha Vencimiento: " , fechaVencimiento)
+            print("Campaña: " , Campania)
+            """
             global mes
             global dia
             global anio
@@ -50,12 +65,13 @@ class DataBase:
             print("dia: ",dia)
             print("mes: ",nombreMes)
             print("año: ",anio)
+            """
               
         except Exception as e:
             raise
 
-    def update_user(self,Razón,uniqueid):
-        sql = "UPDATE bot_movatec SET tipo_contacto='4',motivo='{}',compromiso_p='4'  WHERE lead_id='{}'".format(Razón,uniqueid)
+    def update_user(self,tipo_contacto,razon,compromiso_p,derivacion,fecha_com,entrega_info,uniqueid):
+        sql = "UPDATE bot_movatec SET tipo_contacto='{}',motivo='{}',compromiso_p='{}',derivacion='{}',fecha_com='{}',entrega_info='{}' WHERE lead_id='{}'".format(tipo_contacto,razon,compromiso_p,derivacion,fecha_com,entrega_info,uniqueid)
        # sql = "UPDATE usuarios SET name='{}' WHERE id = {}".format(name,id)
         
         try:
@@ -88,9 +104,10 @@ def variables():
 variables()
 """ 
 
+
 def month_converter(i):
        month = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
-       return month[i]
+       return month[i-1]
 
 
 def ConverterDate():
@@ -124,8 +141,11 @@ class ActionTracker(Action):
             #dispatcher.utter_message(text=f"Razón: {Razón}")
         return []
 
-def llamarDB():
-    database.select_user(94)
+def llamarDB(uniqueid):
+    database.select_user(uniqueid)
+
+def progreso(tipo_contacto,razon,compromiso_p,derivacion,fecha_com,entrega_info,uniqueid):
+    database.update_user(tipo_contacto,razon,compromiso_p,derivacion,fecha_com,entrega_info,uniqueid)
 
 class ActionHello(Action):
     def name(self):
@@ -134,14 +154,15 @@ class ActionHello(Action):
     def run(self, dispatcher, tracker, domain):
         global uniqueid
         uniqueid = tracker.sender_id
-        print("senderid: ", tracker.sender_id)
-        llamarDB()
+        print("uniqueid: ", tracker.sender_id)
+        llamarDB(uniqueid)
         t = datetime.datetime.now()
         print("hora :",t)
         if 23 >= int(t.hour) >= 12:
              dispatcher.utter_message(f'Buenas tardes, nos comunicamos por encargo de Cevsa, es usted {nombre}?')
         else:
              dispatcher.utter_message(f'Buenos días, nos comunicamos por encargo de Cevsa, es usted {nombre}?')
+        progreso(7,razon,compromiso_p,derivacion,fecha_com,"No",uniqueid)
         return []
 
 
@@ -153,24 +174,30 @@ class ActionHello2(Action):
         dispatcher.utter_message(f'Me comunico con {nombre}?')
         return []
 
+
+###########################################################
+################### Pregunta Principal ####################
+###########################################################
+
 class ActionQuestion(Action):
     def name(self):
         return "action_ask_question"
 
     def run(self, dispatcher, tracker, domain):
-       today_date = date.today()
-       print("Dia de hoy : ", today_date)
-       td = timedelta(3)
-       {nombre},
-       print(f'Dia a pagar {(today_date + td).day}')
-       print(f'Mes a pagar {(today_date + td).month}')
-       print(f'Año a pagar {(today_date + td).year}') 
-       dispatcher.utter_message(f'Le informamos que tenemos aprobado un descuento especial por credito cedido de {campaña} que se encuentra en mora por un monto adeudado de {monto} pesos ¿Puede realizar el pago dentro de los proximos 3 días?')
+       progreso(1,razon,compromiso_p,derivacion,fecha_com,"No",uniqueid)
+       #today_date = date.today()
+       #print("Dia de hoy : ", today_date)
+       #td = timedelta(3)
+       #print(f'Dia a pagar {(today_date + td).day}')
+       #print(f'Mes a pagar {(today_date + td).month}')
+       #print(f'Año a pagar {(today_date + td).year}') 
+       dispatcher.utter_message(f'Le informamos que tenemos aprobado un descuento especial por credito cedido de {Campania} que se encuentra en mora por un monto adeudado de {monto} pesos ¿Puede realizar el pago dentro de los proximos 3 días?')
+       progreso(2,razon,compromiso_p,derivacion,fecha_com,"Si",uniqueid)
        return []
 
-###############################
-######## Si paga ##############
-###############################
+################################################
+################### Si paga ####################
+################################################
 
 class ActionGetFechaVcto(Action):
     def name(self):
@@ -178,13 +205,46 @@ class ActionGetFechaVcto(Action):
 
     def run(self, dispatcher, tracker, domain):
         
+        today_date = date.today()
+        print("Dia de hoy : ", today_date)
+        td = timedelta(3)
+        global fechaPago
+        fechaPago=(today_date + td)
+        print("Fecha de Pago: ",fechaPago)
+        dia = (today_date + td).day
+        mes = (today_date + td).month
+        anio = (today_date + td).year
+        nombreMes=month_converter(mes)
+        print(f'Dia a pagar {(today_date + td).day}')
+        print(f'Mes a pagar {(today_date + td).month}')
+        print(f'Año a pagar {(today_date + td).year}') 
         dispatcher.utter_message(f"La fecha sería el {dia} de {nombreMes} del {anio}, {nombre} ¿Autoriza que uno de nuestros ejecutivos lo contacte para entregarle información de los medios de pago?")
+        progreso(3,razon,3,derivacion,fechaPago,"Si",uniqueid)
+        global SiPaga
+        SiPaga=1
         return []
 
 
-###############################
-##### Action Contactar ########
-###############################
+################################################
+################### No paga ####################
+################################################
+
+class ActionGetFechaVcto(Action):
+    def name(self):
+        return "action_no_paga"
+
+    def run(self, dispatcher, tracker, domain):
+        progreso(4,razon,4,derivacion,fecha_com,"Si",uniqueid)
+        global SiPaga
+        SiPaga=0
+        dispatcher.utter_message(f"¿Desea que uno de nuestros ejecutivos se contacte con usted para poder entregarle otras alternativas?")
+        
+        return []
+
+
+################################################
+################# Action Contactar #############
+################################################
 
 class ActionGetGoodBye(Action):
     def name(self):
@@ -192,11 +252,29 @@ class ActionGetGoodBye(Action):
 
     def run(self, dispatcher, tracker, domain):
         dispatcher.utter_message(f'Muchas gracias, lo estará contactando uno de nuestros Ejecutivos')
+        print("Si paga: ",SiPaga)
+        if (SiPaga==1):
+            progreso(3,razon,3,"Si",fechaPago,"Si",uniqueid)
+        elif (SiPaga==0):
+            progreso(4,razon,None,"Si",fecha_com,"Si",uniqueid)
         return []
 
 
+################################################
+################# Action Despedida #############
+################################################
 
+class ActionGetGoodBye(Action):
+    def name(self):
+        return "action_despedida"
 
+    def run(self, dispatcher, tracker, domain):
+        dispatcher.utter_message(f'Muchas gracias por su tiempo, que tenga un buen día')
+        if (SiPaga==True):
+            progreso(3,razon,3,"No",fechaPago,"Si",uniqueid)
+        elif (SiPaga==False):
+            progreso(4,razon,4,"No",fecha_com,"Si",uniqueid)
+        return []
 
 
 
@@ -211,6 +289,7 @@ class ActionConoce(Action):
 
     def run(self, dispatcher, tracker, domain):
         dispatcher.utter_message(f'Disculpe, usted conoce a {nombre}?')
+        progreso(5,razon,compromiso_p,derivacion,fecha_com,entrega_info,uniqueid)
         return []
 
 
@@ -220,6 +299,7 @@ class ActionSiConoce(Action):
 
     def run(self, dispatcher, tracker, domain):
         dispatcher.utter_message(f'Por encargo de Cevsa, le agradecemos que {nombre} se contacte con nosotros al Whatsapp 941111972, repito 941111972. Gracias')
+        progreso(6,razon,compromiso_p,derivacion,fecha_com,"Si",uniqueid)
         return []
 
 ######################################
@@ -289,9 +369,9 @@ class ActionRecibirEsoNo(Action):
             #dispatcher.utter_message(text=f"Razón: {Razón}")
         return []
 
-####################
-###### Restart #####
-####################
+###############################################
+################### Restart ###################
+###############################################
 
 class ActionRestart2(Action):
     """Resets the tracker to its initial state.
@@ -305,9 +385,9 @@ class ActionRestart2(Action):
 
         return [Restarted()]
 
-####################
-###### Final #######
-####################
+##########################
+########## Final #########
+##########################
 class Final(Action):
     def name(self):   
         return "action_final"

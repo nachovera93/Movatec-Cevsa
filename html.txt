@@ -1,0 +1,33 @@
+<script>
+!(function () {
+            let e = document.createElement("script"),
+              t = document.head || document.getElementsByTagName("head")[0];
+            (e.src = 
+            "https://cdn.jsdelivr.net/npm/rasa-webchat@1.0.1/lib/index.js"),
+            (e.async =!0),
+            (e.onload = () => {
+                window.WebChat.default(
+                    {
+                        initPayload: '/greet',
+                        customData: { language: "es"},
+                        socketUrl: "https://e1c9-190-102-230-51.ngrok.io",
+                        socketpath: null,
+                        title: 'Evva',
+                        subtitle:'Powered by Movatec',
+                        showMessageDate: false,
+                        params: {
+                            images: {
+                                dims:{
+                                    width: 300,
+                                    height: 200,
+                                     }
+                                    },
+                                storage: "session"
+                                }
+                    },
+                    null
+                );
+            }),
+            t.insertBefore(e, t.firstchild);
+        })();
+        </script>
