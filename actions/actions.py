@@ -199,7 +199,7 @@ class ActionQuestion(Action):
 ################### Si paga ####################
 ################################################
 
-class ActionGetFechaVcto(Action):
+class ActionSiPaga(Action):
     def name(self):
         return "action_si_paga"
 
@@ -218,7 +218,7 @@ class ActionGetFechaVcto(Action):
         print(f'Dia a pagar {(today_date + td).day}')
         print(f'Mes a pagar {(today_date + td).month}')
         print(f'Año a pagar {(today_date + td).year}') 
-        dispatcher.utter_message(f"La fecha sería el {dia} de {nombreMes} del {anio}, {nombre} ¿Autoriza que uno de nuestros ejecutivos lo contacte para entregarle información de los medios de pago?")
+        dispatcher.utter_message(f"La fecha sería el 12 de febrero del 2022, {nombre} ¿Autoriza que uno de nuestros ejecutivos lo contacte para entregarle información de los medios de pago?")
         progreso(3,razon,3,derivacion,fechaPago,"Si",uniqueid)
         global SiPaga
         SiPaga=1
@@ -229,7 +229,7 @@ class ActionGetFechaVcto(Action):
 ################### No paga ####################
 ################################################
 
-class ActionGetFechaVcto(Action):
+class ActionNoPaga(Action):
     def name(self):
         return "action_no_paga"
 
@@ -246,17 +246,18 @@ class ActionGetFechaVcto(Action):
 ################# Action Contactar #############
 ################################################
 
-class ActionGetGoodBye(Action):
+class ActionContact(Action):
     def name(self):
         return "action_contactar"
 
     def run(self, dispatcher, tracker, domain):
         dispatcher.utter_message(f'Muchas gracias, lo estará contactando uno de nuestros Ejecutivos')
         print("Si paga: ",SiPaga)
-        if (SiPaga==1):
+        if(SiPaga==1):
             progreso(3,razon,3,"Si",fechaPago,"Si",uniqueid)
-        elif (SiPaga==0):
+        elif(SiPaga==0):
             progreso(4,razon,None,"Si",fecha_com,"Si",uniqueid)
+        
         return []
 
 
@@ -270,10 +271,11 @@ class ActionGetGoodBye(Action):
 
     def run(self, dispatcher, tracker, domain):
         dispatcher.utter_message(f'Muchas gracias por su tiempo, que tenga un buen día')
-        if (SiPaga==True):
+        if (SiPaga==1):
             progreso(3,razon,3,"No",fechaPago,"Si",uniqueid)
-        elif (SiPaga==False):
+        elif (SiPaga==0):
             progreso(4,razon,4,"No",fecha_com,"Si",uniqueid)
+        
         return []
 
 
@@ -283,7 +285,7 @@ class ActionGetGoodBye(Action):
 ############ Action Si Conoce ##########
 #####################################
  
-class ActionConoce(Action):
+class ActionConoce0(Action):
     def name(self):
         return "action_conoce"
 
@@ -340,7 +342,7 @@ class ActionRecibirEsoNo(Action):
         return []
 
 global pagará_o_no
-class ActionRecibirEsoNo(Action):
+class ActionRecibirPagaoNo(Action):
 
     def name(self) -> Text:
         return "action_recibir_paga_o_no"
@@ -355,7 +357,7 @@ class ActionRecibirEsoNo(Action):
         return []
 
 global autoriza_o_no
-class ActionRecibirEsoNo(Action):
+class ActionRecibirAutorizaoNo(Action):
 
     def name(self) -> Text:
         return "action_autoriza_o_no"
@@ -396,6 +398,8 @@ class Final(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         #database.close()
+        global SiPaga
+        SiPaga=None
         print("|")
         dispatcher.utter_message(f'|')
         return []
