@@ -442,7 +442,7 @@ class FechaVencimiento(Action):
         return "action_fecha"
 
     def run(self, dispatcher, tracker, domain):
-        dispatcher.utter_message(f'la fecha es el {dia} de {nombreMes} del {anio}, podrá pagar dentro de los 3 proximos días?')
+        dispatcher.utter_message(f'Sería dentro de los 3 proximos días, podría cancelar?')
         return []
 
 ####################
