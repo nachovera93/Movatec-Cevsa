@@ -14,6 +14,7 @@ intents:
 - despedida
 - preguntar_monto
 - soy_yo
+- inicio
 entities:
 - respuesta
 slots:

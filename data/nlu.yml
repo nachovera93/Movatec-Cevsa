@@ -244,3 +244,8 @@ nlu:
   examples: |
     - [soy yo](soy yo)
     - si [soy yo](soy yo)
+
+- intent: inicio
+  examples: |
+    - inicio
+    - Inicio

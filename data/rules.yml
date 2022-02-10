@@ -1,7 +1,10 @@
 version: "2.0"
 rules:
 
-
+  - rule: inicio
+    steps:
+      - intent: inicio
+      - action: action_restart2
 
   - rule: eres bot?
     steps:
