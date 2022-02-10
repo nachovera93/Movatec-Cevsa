@@ -71,6 +71,8 @@ nlu:
     - yo creo que [si](respuesta)
     - [si](respuesta)
     - [si](respuesta) digame
+    - [sí](respuesta)
+    - [sí](respuesta) con el
 - intent: negación
   examples: |
     - [no](respuesta) puedo
@@ -106,6 +108,8 @@ nlu:
     - [no](respuesta) lo cacho
     - ahh ok, [no](respuesta)
     - [no](respuesta)
+    - [nó](respuesta)
+    - [nó](respuesta) puedo
 - intent: saludos
   examples: |
     - hola
