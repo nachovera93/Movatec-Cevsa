@@ -191,7 +191,7 @@ class ActionQuestion(Action):
        #print(f'Dia a pagar {(today_date + td).day}')
        #print(f'Mes a pagar {(today_date + td).month}')
        #print(f'Año a pagar {(today_date + td).year}') 
-       dispatcher.utter_message(f'Le informamos que tenemos aprobado un descuento especial por credito cedido de {Campania} que se encuentra en mora por un monto adeudado de {monto} pesos ¿Puede realizar el pago dentro de los proximos 3 días?')
+       dispatcher.utter_message(f'Le informamos que tenemos aprobado un descuento especial por credito cedido de {Campania} que se encuentra en mora por un monto adeudado de {monto} pesos quedando a pagar tan solo 402082 pesos ¿Puede realizar el pago dentro de los proximos 3 días?')
        progreso(2,razon,compromiso_p,derivacion,fecha_com,"Si",uniqueid)
        return []
 
