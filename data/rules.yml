@@ -4,8 +4,8 @@ rules:
   - rule: inicio
     steps:
       - intent: inicio
-      - action: action_restart2
-      - action: action_hello
+      - action: action_restart
+#      - action: action_hello
 
   - rule: eres bot?
     steps:
@@ -74,10 +74,10 @@ rules:
       - intent: de_donde
       - action: action_donde2
 
-  - rule: saludos
-    steps:
-      - intent: saludos
-      - action: action_hello
+#  - rule: saludos
+#    steps:
+#      - intent: saludos
+#      - action: action_hello
       
 
   - rule: Confirm that the bot is not a human

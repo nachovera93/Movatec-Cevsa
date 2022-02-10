@@ -502,13 +502,23 @@ class ActionReceivePersona(Action):
         return []  #devolvemos a slot un string con valor
 
 
-class ResetSlot(Action):
+class ResetSlotss(Action):
 
     def name(self):
         return "action_restart"
 
     def run(self, dispatcher, tracker, domain):
-    
+        global uniqueid
+        uniqueid = tracker.sender_id
+        print("uniqueid: ", tracker.sender_id)
+        llamarDB(uniqueid)
+        t = datetime.datetime.now()
+        print("hora :",t)
+        if 23 >= int(t.hour) >= 12:
+             dispatcher.utter_message(f'Buenas tardes, nos comunicamos por encargo de Cevsa, es usted {nombre}?')
+        else:
+             dispatcher.utter_message(f'Buenos días, nos comunicamos por encargo de Cevsa, es usted {nombre}?')
+        progreso(7,razon,compromiso_p,derivacion,fecha_com,"No",uniqueid)
         print("es_o_no: ", None)
         print("conoce_o_no: ", None)
         print("pagará_o_no: ", None)
