@@ -46,7 +46,7 @@ class DataBase:
             global oferta
             global primernombre
             primernombre = user[1]
-            monto = user[3]
+            monto = user[4]
             nombre = user[2]
             fechaVencimiento = "01/01/2022"
             Campania = user[9]
@@ -406,10 +406,10 @@ class Final(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         #database.close()
-        global SiPaga
+        #global SiPaga
         #SiPaga=None
         print("Exit")
-        dispatcher.utter_message(f'Exit')
+        #dispatcher.utter_message(f'Exit')
         return []
 
 
