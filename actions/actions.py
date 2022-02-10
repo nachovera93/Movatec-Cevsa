@@ -399,9 +399,9 @@ class Final(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         #database.close()
         global SiPaga
-        SiPaga=None
-        print("|")
-        dispatcher.utter_message(f'|')
+        #SiPaga=None
+        print("Exit")
+        dispatcher.utter_message(f'Exit')
         return []
 
 
