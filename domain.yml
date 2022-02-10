@@ -36,7 +36,7 @@ responses:
   utter_default_repetir:
   - text: Disculpe, no le entendí ¿Me podrá repetir lo dicho?
   utter_despedida:
-  - text: Muchas gracias por su tiempo, que tenga un buen día.
+  - text: Muchas gracias por su tiempo, que tenga un buen día. | EXIT
   utter_bot:
   - text: Soy Eva, un asistente virtual.
   utter_pregunta_contactar_ejecutivo:

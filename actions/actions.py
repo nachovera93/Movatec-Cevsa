@@ -43,16 +43,20 @@ class DataBase:
             global nombre
             global fechaVencimiento
             global Campania
-            monto = user[3]
-            nombre = user[2]
-            fechaVencimiento = user[5]
-            Campania = user[8]
-            print("user: ", user)
-            print("Rut:" , user[0])
-            print("Nombre:" , nombre)
-            print("Deuda monto:" , monto)
-            print("fecha Vencimiento: " , fechaVencimiento)
-            print("Campaña: " , Campania)
+            global oferta
+            global primernombre
+            primernombre = "CARLOS"
+            monto = "3686301"
+            nombre = "CARLOS  ROBERTO SANHUEZA MUNOZ"
+            fechaVencimiento = "01/01/2022"
+            Campania = "SANTANDER"
+            #oferta = user[8]
+            #print("user: ", user)
+            #print("Rut:" , user[0])
+            #print("Nombre:" , nombre)
+            #print("Deuda monto:" , monto)
+            #print("fecha Vencimiento: " , fechaVencimiento)
+            #print("Campaña: " , Campania)
             """
             global mes
             global dia
@@ -191,7 +195,7 @@ class ActionQuestion(Action):
        #print(f'Dia a pagar {(today_date + td).day}')
        #print(f'Mes a pagar {(today_date + td).month}')
        #print(f'Año a pagar {(today_date + td).year}') 
-       dispatcher.utter_message(f'Le informamos que tenemos aprobado un descuento especial por credito cedido de {Campania} que se encuentra en mora por un monto adeudado de {monto} pesos quedando a pagar tan solo 402082 pesos ¿Puede realizar el pago dentro de los proximos 3 días?')
+       dispatcher.utter_message(f'Le informamos que tenemos aprobado un descuento especial por credito cedido de {Campania} que se encuentra en mora por un monto adeudado de {monto} pesos, quedando a pagar tan solo 500000 pesos. ¿Puede realizar el pago dentro de los proximos 3 días?')
        progreso(2,razon,compromiso_p,derivacion,fecha_com,"Si",uniqueid)
        return []
 
@@ -218,7 +222,7 @@ class ActionSiPaga(Action):
         print(f'Dia a pagar {(today_date + td).day}')
         print(f'Mes a pagar {(today_date + td).month}')
         print(f'Año a pagar {(today_date + td).year}') 
-        dispatcher.utter_message(f"La fecha sería el {dia} de {nombreMes} del {anio}, {nombre} ¿Autoriza que uno de nuestros ejecutivos lo contacte para entregarle información de los medios de pago?")
+        dispatcher.utter_message(f"La fecha sería el {dia} de {nombreMes} del {anio}. Carlos, ¿Autoriza que uno de nuestros ejecutivos lo contacte para entregarle información de los medios de pago?")
         progreso(3,razon,3,derivacion,fechaPago,"Si",uniqueid)
         global SiPaga
         SiPaga=1
@@ -251,7 +255,7 @@ class ActionContact(Action):
         return "action_contactar"
 
     def run(self, dispatcher, tracker, domain):
-        dispatcher.utter_message(f'Muchas gracias, lo estará contactando uno de nuestros Ejecutivos')
+        dispatcher.utter_message(f'Muchas gracias, lo estará contactando uno de nuestros Ejecutivos | EXIT')
         print("Si paga: ",SiPaga)
         if(SiPaga==1):
             progreso(3,razon,3,"Si",fechaPago,"Si",uniqueid)
@@ -270,7 +274,7 @@ class ActionGetGoodBye(Action):
         return "action_despedida"
 
     def run(self, dispatcher, tracker, domain):
-        dispatcher.utter_message(f'Muchas gracias por su tiempo, que tenga un buen día')
+        dispatcher.utter_message(f'Muchas gracias por su tiempo, que tenga un buen día | EXIT')
         if (SiPaga==1):
             progreso(3,razon,3,"No",fechaPago,"Si",uniqueid)
         elif (SiPaga==0):
@@ -300,7 +304,7 @@ class ActionSiConoce(Action):
         return "action_si_conoce"
 
     def run(self, dispatcher, tracker, domain):
-        dispatcher.utter_message(f'Por encargo de Cevsa, le agradecemos que {nombre} se contacte con nosotros al Whatsapp 941111972, repito 941111972. Gracias')
+        dispatcher.utter_message(f'Por encargo de Cevsa, le agradecemos que Carlos se contacte con nosotros al Whatsapp 941111972, repito 941111972. Gracias | EXIT')
         progreso(6,razon,compromiso_p,derivacion,fecha_com,"Si",uniqueid)
         return []
 
