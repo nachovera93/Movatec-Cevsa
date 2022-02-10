@@ -4,9 +4,9 @@ stories:
 
   - story: no es y si conoce
     steps:
-    - intent: saludos
-    - action: action_restart
-    - action: action_hello
+#    - intent: saludos
+#    - action: action_restart
+#    - action: action_hello
     - intent: negación
       entities:
       - respuesta: no
@@ -37,9 +37,9 @@ stories:
 
   - story: no es, no lo conoce
     steps:
-    - intent: saludos
-    - action: action_restart
-    - action: action_hello
+#    - intent: saludos
+#    - action: action_restart
+#    - action: action_hello
     - intent: negación
       entities:
       - respuesta: no equivocado
@@ -71,9 +71,9 @@ stories:
 
   - story: si es, si paga, si autoriza
     steps:
-    - intent: saludos
-    - action: action_restart
-    - action: action_hello
+#    - intent: saludos
+#    - action: action_restart
+#    - action: action_hello
     - intent: afirmación
       entities:
       - respuesta: si
@@ -116,9 +116,9 @@ stories:
 
   - story: si es, si paga y no autoriza
     steps:
-    - intent: saludos
-    - action: action_restart
-    - action: action_hello
+#    - intent: saludos
+#    - action: action_restart
+#    - action: action_hello
     - intent: afirmación
       entities:
       - respuesta: si
@@ -160,9 +160,9 @@ stories:
 
   - story: interactive_story_1
     steps:
-    - intent: saludos
-    - action: action_restart
-    - action: action_hello
+#    - intent: saludos
+#    - action: action_restart
+#    - action: action_hello
     - intent: afirmación
       entities:
       - respuesta: si
@@ -204,9 +204,9 @@ stories:
 
   - story: interactive_story_2
     steps:
-    - intent: saludos
-    - action: action_restart
-    - action: action_hello
+#    - intent: saludos
+#    - action: action_restart
+#    - action: action_hello
     - intent: afirmación
       entities:
       - respuesta: si

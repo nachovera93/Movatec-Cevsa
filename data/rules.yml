@@ -5,6 +5,7 @@ rules:
     steps:
       - intent: inicio
       - action: action_restart2
+      - action: action_hello
 
   - rule: eres bot?
     steps:
@@ -72,6 +73,11 @@ rules:
       - action: action_ask_question
       - intent: de_donde
       - action: action_donde2
+
+  - rule: saludos
+    steps:
+      - intent: saludos
+      - action: action_hello
       
 
   - rule: Confirm that the bot is not a human
