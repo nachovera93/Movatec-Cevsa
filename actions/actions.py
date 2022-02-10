@@ -177,7 +177,7 @@ class ActionHello2(Action):
         return "action_hello2"
 
     def run(self, dispatcher, tracker, domain):
-        dispatcher.utter_message(f'Me comunico con {nombre}?')
+        dispatcher.utter_message(f'Me comunico con {primernombre}?')
         return []
 
 
