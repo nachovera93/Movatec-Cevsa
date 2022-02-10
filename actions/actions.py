@@ -218,7 +218,7 @@ class ActionSiPaga(Action):
         print(f'Dia a pagar {(today_date + td).day}')
         print(f'Mes a pagar {(today_date + td).month}')
         print(f'Año a pagar {(today_date + td).year}') 
-        dispatcher.utter_message(f"La fecha sería el 12 de febrero del 2022, {nombre} ¿Autoriza que uno de nuestros ejecutivos lo contacte para entregarle información de los medios de pago?")
+        dispatcher.utter_message(f"La fecha sería el {dia} de {nombreMes} del {anio}, {nombre} ¿Autoriza que uno de nuestros ejecutivos lo contacte para entregarle información de los medios de pago?")
         progreso(3,razon,3,derivacion,fechaPago,"Si",uniqueid)
         global SiPaga
         SiPaga=1
@@ -502,4 +502,16 @@ class ActionReceivePersona(Action):
         return []  #devolvemos a slot un string con valor
 
 
+class ResetSlot(Action):
+
+    def name(self):
+        return "action_restart"
+
+    def run(self, dispatcher, tracker, domain):
+    
+        print("es_o_no: ", None)
+        print("conoce_o_no: ", None)
+        print("pagará_o_no: ", None)
+        print("Razón: ", None)
+        return [SlotSet("es_o_no", None),SlotSet("conoce_o_no", None),SlotSet("pagará_o_no", None),SlotSet("Razón", None)]
 
