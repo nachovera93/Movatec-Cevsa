@@ -34,7 +34,7 @@ class DataBase:
         print("Conexion exitosa!")
 
     def select_user(self, uniqueid):
-        sql = "select T0.vendor_lead_code, T0.first_name,T0.address1,T0.lead_id,T0.address2,T0.city,T0.owner,T1.list_name,T2.campaign_name from vicidial_list T0 inner join vicidial_lists T1 on T0.list_id=T1.list_id inner join vicidial_campaigns T2 on T1.campaign_id=T2.campaign_id where T0.lead_id = '{}'".format(uniqueid)
+        sql = "select T0.vendor_lead_code, T0.first_name,T0.address1,T0.lead_id,T0.address2,T0.city,T0.owner,T1.list_name,T0.email,T2.campaign_name from vicidial_list T0 inner join vicidial_lists T1 on T0.list_id=T1.list_id inner join vicidial_campaigns T2 on T1.campaign_id=T2.campaign_id where T0.lead_id = '{}'".format(uniqueid)
         
         try:
             self.cursor.execute(sql)
@@ -45,18 +45,19 @@ class DataBase:
             global Campania
             global oferta
             global primernombre
-            primernombre = "CARLOS"
-            monto = "3686301"
-            nombre = "CARLOS  ROBERTO SANHUEZA MUNOZ"
+            primernombre = user[1]
+            monto = user[3]
+            nombre = user[2]
             fechaVencimiento = "01/01/2022"
-            Campania = "SANTANDER"
-            #oferta = user[8]
-            #print("user: ", user)
+            Campania = user[9]
+            oferta = user[8]
+            print("user: ", user)
             #print("Rut:" , user[0])
-            #print("Nombre:" , nombre)
-            #print("Deuda monto:" , monto)
+            print("Nombre:" , nombre)
+            print("Deuda monto:" , monto)
             #print("fecha Vencimiento: " , fechaVencimiento)
-            #print("Campaña: " , Campania)
+            print("Campaña: " , Campania)
+            print("oferta: " , oferta)
             """
             global mes
             global dia
@@ -158,6 +159,7 @@ class ActionHello(Action):
     def run(self, dispatcher, tracker, domain):
         global uniqueid
         uniqueid = tracker.sender_id
+        #uniqueid = 565408
         print("uniqueid: ", tracker.sender_id)
         llamarDB(uniqueid)
         t = datetime.datetime.now()
@@ -188,14 +190,16 @@ class ActionQuestion(Action):
         return "action_ask_question"
 
     def run(self, dispatcher, tracker, domain):
+       print("Dia de hoy : ", 1) 
        progreso(1,razon,compromiso_p,derivacion,fecha_com,"No",uniqueid)
+       print("Dia de hoy : ", 2)
        #today_date = date.today()
        #print("Dia de hoy : ", today_date)
        #td = timedelta(3)
        #print(f'Dia a pagar {(today_date + td).day}')
        #print(f'Mes a pagar {(today_date + td).month}')
        #print(f'Año a pagar {(today_date + td).year}') 
-       dispatcher.utter_message(f'Le informamos que tenemos aprobado un descuento especial por credito cedido de {Campania} que se encuentra en mora por un monto adeudado de {monto} pesos, quedando a pagar tan solo 500000 pesos. ¿Puede realizar el pago dentro de los proximos 3 días?')
+       dispatcher.utter_message(f'Le informamos que tenemos aprobado un descuento especial por credito cedido de {Campania} que se encuentra en mora por un monto adeudado de {monto} pesos, quedando a pagar tan solo {oferta} pesos. ¿Puede realizar el pago dentro de los proximos 3 días?')
        progreso(2,razon,compromiso_p,derivacion,fecha_com,"Si",uniqueid)
        return []
 
@@ -222,7 +226,7 @@ class ActionSiPaga(Action):
         print(f'Dia a pagar {(today_date + td).day}')
         print(f'Mes a pagar {(today_date + td).month}')
         print(f'Año a pagar {(today_date + td).year}') 
-        dispatcher.utter_message(f"La fecha sería el {dia} de {nombreMes} del {anio}. Carlos, ¿Autoriza que uno de nuestros ejecutivos lo contacte para entregarle información de los medios de pago?")
+        dispatcher.utter_message(f"La fecha sería el {dia} de {nombreMes} del {anio}. {primernombre}, ¿Autoriza que uno de nuestros ejecutivos lo contacte para entregarle información de los medios de pago?")
         progreso(3,razon,3,derivacion,fechaPago,"Si",uniqueid)
         global SiPaga
         SiPaga=1
@@ -304,7 +308,7 @@ class ActionSiConoce(Action):
         return "action_si_conoce"
 
     def run(self, dispatcher, tracker, domain):
-        dispatcher.utter_message(f'Por encargo de Cevsa, le agradecemos que Carlos se contacte con nosotros al Whatsapp 941111972, repito 941111972. Gracias | EXIT')
+        dispatcher.utter_message(f'Por encargo de Cevsa, le agradecemos que {primernombre} se contacte con nosotros al Whatsapp 941111972, repito 941111972. Gracias | EXIT')
         progreso(6,razon,compromiso_p,derivacion,fecha_com,"Si",uniqueid)
         return []
 
