@@ -161,8 +161,8 @@ class ActionHello(Action):
 
     def run(self, dispatcher, tracker, domain):
         global uniqueid
-        #uniqueid = tracker.sender_id
-        uniqueid = 565408
+        uniqueid = tracker.sender_id
+        #uniqueid = 565408
         print("uniqueid: ", tracker.sender_id)
         llamarDB(uniqueid)
         t = datetime.datetime.now()
@@ -181,8 +181,8 @@ class ActionHello2(Action):
 
     def run(self, dispatcher, tracker, domain):
         global uniqueid
-        #uniqueid = tracker.sender_id
-        uniqueid = 565408
+        uniqueid = tracker.sender_id
+        #uniqueid = 565408
         print("uniqueid: ", tracker.sender_id)
         llamarDB(uniqueid)
         progreso(7,razon,compromiso_p,derivacion,fecha_com,"No",uniqueid)
