@@ -2,6 +2,7 @@ import datetime
 from datetime import date, timedelta
 from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker
+from rasa_sdk.events import SlotSet, ActionExecuted, EventType
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet
 from rasa_sdk.events import Restarted
@@ -152,14 +153,16 @@ def llamarDB(uniqueid):
 def progreso(tipo_contacto,razon,compromiso_p,derivacion,fecha_com,entrega_info,uniqueid):
     database.update_user(tipo_contacto,razon,compromiso_p,derivacion,fecha_com,entrega_info,uniqueid)
 
+
+
 class ActionHello(Action):
     def name(self):
         return "action_hello"
 
     def run(self, dispatcher, tracker, domain):
         global uniqueid
-        uniqueid = tracker.sender_id
-        #uniqueid = 565408
+        #uniqueid = tracker.sender_id
+        uniqueid = 565408
         print("uniqueid: ", tracker.sender_id)
         llamarDB(uniqueid)
         t = datetime.datetime.now()
@@ -177,6 +180,12 @@ class ActionHello2(Action):
         return "action_hello2"
 
     def run(self, dispatcher, tracker, domain):
+        global uniqueid
+        #uniqueid = tracker.sender_id
+        uniqueid = 565408
+        print("uniqueid: ", tracker.sender_id)
+        llamarDB(uniqueid)
+        progreso(7,razon,compromiso_p,derivacion,fecha_com,"No",uniqueid)
         dispatcher.utter_message(f'Me comunico con {primernombre}?')
         return []
 

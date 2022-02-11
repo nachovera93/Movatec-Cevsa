@@ -1,5 +1,7 @@
 version: "2.0"
 nlu:
+
+
 - intent: eres_humano
   examples: |
     - eres un bot?
@@ -65,10 +67,9 @@ nlu:
     - ah [bueno](respuesta)
     - [si](respuesta), con el
     - [si](respuesta) pero no esta
-    - [si](respuesta) digame
     - [si](respuesta) con el mismo
     - [si](respuesta) con quien
-    - yo creo que [si](respuesta)
+    - que [si](respuesta)
     - [si](respuesta)
     - [si](respuesta) digame
     - [sí](respuesta)
@@ -92,7 +93,6 @@ nlu:
     - ehh [no](respuesta)
     - [no](respuesta) quiero aceptar
     - creo que me referia a que [no](respuesta)
-    - yo creo que [no](respuesta)
     - [no](respuesta) estoy seguro
     - [no](respuesta) lo conozco
     - [no](respuesta) soy
@@ -103,10 +103,9 @@ nlu:
     - [no](respuesta) equivocado
     - [no](respuesta) quiero
     - ehhh [no](respuesta)
-    - ahh ok, [no] lo conozco(respuesta)
+    - [no] lo conozco(respuesta)
     - ah [no](respuesta)
     - [no](respuesta) lo cacho
-    - ahh ok, [no](respuesta)
     - [no](respuesta)
     - [nó](respuesta)
     - [nó](respuesta) puedo
@@ -169,13 +168,8 @@ nlu:
     - good bye
     - good bye bot!
     - buenas noches
-- intent: out_of_scope
+- intent: me_repite
   examples: |
-    - yo creo
-    - digame
-    - ok
-    - s
-    - asdas
     - no entendí repite
     - repitelo
     - repite
@@ -198,8 +192,17 @@ nlu:
     - repiteme porfavor
     - no entendi
     - como dijo?
+
+- intent: out_of_scope
+  examples: |
+    - yo creo
+    - ok
+    - sgasga
+    - asdasgffg
     - ah ya
     - ya
+    - lkasjlsalsa
+
 - intent: preguntar_nombre
   examples: |
     - a [quien](quien)?
@@ -244,6 +247,10 @@ nlu:
   examples: |
     - [soy yo](soy yo)
     - si [soy yo](soy yo)
+
+- intent: space
+  examples: |
+    - " "
 
 - intent: inicio
   examples: |

@@ -15,6 +15,9 @@ intents:
 - preguntar_monto
 - soy_yo
 - inicio
+- me_repite
+- space
+- start
 entities:
 - respuesta
 slots:
