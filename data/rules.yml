@@ -23,19 +23,6 @@ rules:
       - action: utter_bot
       - action: action_conoce
 
-  - rule: eres bot4?
-    steps:
-      - action: action_si_conoce
-      - intent: eres_humano
-      - action: utter_bot
-      - action: action_si_conoce
-
-  - rule: eres bot5?
-    steps:
-      - action: action_contactar
-      - intent: eres_humano
-      - action: utter_bot
-      - action: action_contactar
 
   - rule: eres bot6?
     steps:
@@ -51,20 +38,7 @@ rules:
       - action: utter_bot
       - action: action_no_paga
 
-  - rule: eres bot8?
-    steps:
-      - action: action_despedida
-      - intent: eres_humano
-      - action: utter_bot
-      - action: action_despedida
 
-
-  - rule: eres bot9?
-    steps:
-      - action: utter_despedida
-      - intent: eres_humano
-      - action: utter_bot
-      - action: utter_despedida
       
   - rule: fallback
     steps:
@@ -103,17 +77,7 @@ rules:
       - intent: me_repite
       - action: action_conoce
 
-  - rule: me repite 4
-    steps:
-      - action: action_si_conoce
-      - intent: me_repite
-      - action: action_si_conoce
 
-  - rule: me repite 5
-    steps:
-      - action: action_contactar
-      - intent: me_repite
-      - action: action_contactar
 
   - rule: me repite 6
     steps:
@@ -127,17 +91,6 @@ rules:
       - intent: me_repite
       - action: action_no_paga
 
-  - rule: me repite 8
-    steps:
-      - action: action_despedida
-      - intent: me_repite
-      - action: action_despedida
-
-  - rule: me repite 9
-    steps:
-      - action: utter_despedida
-      - intent: me_repite
-      - action: utter_despedida
 
   - rule: me repite 10
     steps:
