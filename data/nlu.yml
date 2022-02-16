@@ -205,48 +205,48 @@ nlu:
 
 - intent: preguntar_nombre
   examples: |
-    - a [quien](quien)?
-    - a [quien](quien) busca?
-    - con [quien](quien)?
-    - disculpa a [quien](quien)?
-    - a [quien](quien) me dijo?
-    - con [quien](quien)
+    - a quien?
+    - a quien busca?
+    - con quien?
+    - disculpa a quien?
+    - a quien me dijo?
+    - con quien
 - intent: preguntar_monto
   examples: |
-    - perdon, [cuanto](monto)?
-    - me repite el [monto](monto) porfavor?
-    - disculpa, [cuanta plata](monto)?
-    - cuanto es el [monto](monto)?
-    - y [cuanto](monto) erá?
-    - y [cuanta plata](monto) erá?
-    - disculpa cual era el [monto](monto)?
-    - [cuanto](monto)
-    - [monto](monto)
+    - perdon cuanto?
+    - me repite el monto porfavor?
+    - disculpa, cuanta plata?
+    - cuanto es el monto?
+    - y cuanto erá?
+    - y cuanta plata erá?
+    - disculpa cual era el monto?
+    - cuanto
+    - monto
 - intent: que_fecha
   examples: |
-    - [cuando](fecha) disculpa?
-    - me repite [la fecha](fecha) porfavor?
-    - cual era [la fecha](fecha)?
-    - [que dia](fecha)?
-    - [que fecha](fecha) erá?
-    - [que día](fecha) erá?
-    - disculpa cual era la [fecha](fecha)?
-    - [fecha](fecha)
-    - [cuando](fecha)
+    - cuando disculpa?
+    - me repite la fecha porfavor?
+    - cual era la fecha?
+    - que dia?
+    - que fecha erá?
+    - que día erá?
+    - disculpa cual era la fecha?
+    - fecha
+    - cuando
 - intent: de_donde
   examples: |
-    - [donde](donde)?
-    - de [donde](donde) llama disculpe?
-    - me repite de [donde](donde) porfavor?
-    - de [donde](donde)?
-    - [donde](donde)
-    - de que [parte](donde)?
-    - de que [parte](donde) llama?
-    - de que [parte](donde) es esto?
+    - donde?
+    - de donde llama disculpe?
+    - me repite de donde porfavor?
+    - de donde?
+    - donde
+    - de que parte?
+    - de que parte llama?
+    - de que parte es esto?
 - intent: soy_yo
   examples: |
-    - [soy yo](soy yo)
-    - si [soy yo](soy yo)
+    - soy yo
+    - si soy yo
 
 - intent: space
   examples: |

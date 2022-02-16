@@ -274,7 +274,8 @@ class ActionContact(Action):
             progreso(3,razon,3,"Si",fechaPago,"Si",uniqueid)
         elif(SiPaga==0):
             progreso(4,razon,None,"Si",fecha_com,"Si",uniqueid)
-        
+        else:
+            print("Nada")
         return []
 
 
@@ -292,7 +293,8 @@ class ActionGetGoodBye(Action):
             progreso(3,razon,3,"No",fechaPago,"Si",uniqueid)
         elif (SiPaga==0):
             progreso(4,razon,4,"No",fecha_com,"Si",uniqueid)
-        
+        else:
+            print("Nada")
         return []
 
 

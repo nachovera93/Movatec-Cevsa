@@ -139,6 +139,43 @@ rules:
       - intent: me_repite
       - action: utter_despedida
 
+  - rule: me repite 10
+    steps:
+      - action: action_monto
+      - intent: me_repite
+      - action: action_monto
+
+  - rule: me repite 11
+    steps:
+      - action: action_hello2
+      - intent: me_repite
+      - action: action_hello2
+
+  - rule: me repite 12
+    steps:
+      - action: action_quien
+      - intent: me_repite
+      - action: action_quien
+
+  - rule: me repite 13
+    steps:
+      - action: action_donde
+      - intent: me_repite
+      - action: action_donde
+
+
+  - rule: me repite 14
+    steps:
+      - action: action_donde2
+      - intent: me_repite
+      - action: action_donde2
+
+  - rule: me repite 14
+    steps:
+      - action: action_fecha
+      - intent: me_repite
+      - action: action_fecha
+
 #  - rule: fallback2
 #    steps:
 #      - action: action_hello
