@@ -416,7 +416,8 @@ class ActionRestart2(Action):
 
     async def run(self, dispatcher, tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-
+        global uniqueid
+        uniqueid = tracker.sender_id
         return [Restarted()]
 
 ##########################
