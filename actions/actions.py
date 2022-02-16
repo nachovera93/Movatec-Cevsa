@@ -431,7 +431,7 @@ class ActionMonto(Action):
         uniqueid = tracker.sender_id
         #progreso(2,razon,compromiso_p,derivacion,fecha_com,"Si",uniqueid)
         llamarDB(uniqueid)
-        dispatcher.utter_message(f'El monto adeudado es de {monto} pesos, podrá pagar dentro de los 3 proximos días?')
+        dispatcher.utter_message(f'El monto adeudado es de {monto} pesos, con oferta de {oferta} podrá pagar dentro de los 3 proximos días?')
         return []
 
 class FechaVencimiento(Action):

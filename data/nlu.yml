@@ -30,6 +30,7 @@ nlu:
     - con quien estoy hablando?
 - intent: afirmación
   examples: |
+    - el mismo
     - cierto
     - [correcto](respuesta)
     - eso suena bien
@@ -42,6 +43,8 @@ nlu:
     - [seguro](respuesta)
     - [ye](respuesta)
     - eso sería genial
+    - [positivo](respuesta)
+    - [afirmativo](respuesta)
     - [Yup](respuesta)
     - [Yea](respuesta)
     - [Yeah](respuesta)
@@ -75,6 +78,7 @@ nlu:
     - [sí](respuesta) con el
 - intent: negación
   examples: |
+    - [negativo](respuesta)
     - [no](respuesta) puedo
     - [no](respuesta) creo
     - [no](respuesta)
