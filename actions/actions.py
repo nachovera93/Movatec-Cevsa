@@ -225,6 +225,7 @@ class ActionSiPaga(Action):
     def run(self, dispatcher, tracker, domain):
         global uniqueid
         uniqueid = tracker.sender_id
+        progreso(2,razon,compromiso_p,derivacion,fecha_com,"Si",uniqueid)
         today_date = date.today()
         print("Dia de hoy : ", today_date)
         td = timedelta(3)
@@ -320,6 +321,7 @@ class ActionConoce0(Action):
     def run(self, dispatcher, tracker, domain):
         global uniqueid
         uniqueid = tracker.sender_id
+        progreso(7,razon,compromiso_p,derivacion,fecha_com,"No",uniqueid)
         dispatcher.utter_message(f'Disculpe, usted conoce a {nombre}?')
         progreso(5,razon,compromiso_p,derivacion,fecha_com,entrega_info,uniqueid)
         return []
@@ -332,6 +334,7 @@ class ActionSiConoce(Action):
     def run(self, dispatcher, tracker, domain):
         global uniqueid
         uniqueid = tracker.sender_id
+        progreso(5,razon,compromiso_p,derivacion,fecha_com,entrega_info,uniqueid)
         dispatcher.utter_message(f'Por encargo de Cevsa, le agradecemos que {primernombre} se contacte con nosotros al Whatsapp 941111972, repito 941111972. Gracias | EXIT')
         progreso(6,razon,compromiso_p,derivacion,fecha_com,"Si",uniqueid)
         return []
