@@ -60,7 +60,7 @@ nlu:
     - [si](respuesta)
     - [sii](respuesta) porque?
     - [si](respuesta) pero no está
-    - [si](respuesta) con el digame
+    - [si](respuesta) con el
     - [si](respuesta) claro
     - [si](respuesta) dime
     - [si](respuesta) con el
@@ -71,7 +71,6 @@ nlu:
     - [si](respuesta) con quien
     - que [si](respuesta)
     - [si](respuesta)
-    - [si](respuesta) digame
     - [sí](respuesta)
     - [sí](respuesta) con el
 - intent: negación
@@ -195,13 +194,12 @@ nlu:
 
 - intent: out_of_scope
   examples: |
+    - digame
+    - cuenteme
     - yo creo
     - ok
-    - sgasga
-    - asdasgffg
     - ah ya
     - ya
-    - lkasjlsalsa
 
 - intent: preguntar_nombre
   examples: |
