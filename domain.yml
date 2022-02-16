@@ -23,16 +23,16 @@ entities:
 slots:
   es_o_no:
     type: text
-    influence_conversation: false
+    influence_conversation: true
   conoce_o_no:
     type: text
-    influence_conversation: false
+    influence_conversation: true
   autoriza_o_no:
     type: text
-    influence_conversation: false
+    influence_conversation: true
   pagará_o_no:
     type: text
-    influence_conversation: false
+    influence_conversation: true
 responses:
   utter_default:
   - text: Disculpe, no logré escuchar ¿Sería tan amable de responder con un si o un no?

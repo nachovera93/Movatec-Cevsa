@@ -42,7 +42,7 @@ stories:
     - action: action_hello
     - intent: negación
       entities:
-      - respuesta: no equivocado
+      - respuesta: no 
     - action: persona_form
     - active_loop: persona_form
     - slot_was_set:
@@ -53,7 +53,7 @@ stories:
     - action: action_conoce
     - intent: negación
       entities:
-      - respuesta: no lo conozco
+      - respuesta: no
     - action: lo_conoce_form
     - active_loop: lo_conoce_form
     - slot_was_set:
