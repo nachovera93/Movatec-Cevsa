@@ -452,6 +452,7 @@ class ActionConoce(Action):
     def run(self, dispatcher, tracker, domain):
         global uniqueid
         uniqueid = tracker.sender_id
+        progreso(7,razon,compromiso_p,derivacion,fecha_com,"No",uniqueid)
         dispatcher.utter_message(f'{nombre}?')
         return []
 
@@ -462,6 +463,7 @@ class ActionDonde(Action):
     def run(self, dispatcher, tracker, domain):
         global uniqueid
         uniqueid = tracker.sender_id
+        progreso(7,razon,compromiso_p,derivacion,fecha_com,"No",uniqueid)
         dispatcher.utter_message(f'Nos estamos comunicando por encargo de Cevsa')
         return []
 
@@ -472,6 +474,7 @@ class ActionDonde2(Action):
     def run(self, dispatcher, tracker, domain):
         global uniqueid
         uniqueid = tracker.sender_id
+        progreso(2,razon,compromiso_p,derivacion,fecha_com,"Si",uniqueid)
         dispatcher.utter_message(f'Estamos llamando por encargo de Cevsa, podrá pagar dentro de los 3 proximos días?')
         return []
 
@@ -482,6 +485,7 @@ class ActionMonto(Action):
     def run(self, dispatcher, tracker, domain):
         global uniqueid
         uniqueid = tracker.sender_id
+        progreso(2,razon,compromiso_p,derivacion,fecha_com,"Si",uniqueid)
         dispatcher.utter_message(f'El monto adeudado es de {monto} pesos, podrá pagar dentro de los 3 proximos días?')
         return []
 
@@ -492,6 +496,7 @@ class FechaVencimiento(Action):
     def run(self, dispatcher, tracker, domain):
         global uniqueid
         uniqueid = tracker.sender_id
+        progreso(2,razon,compromiso_p,derivacion,fecha_com,"Si",uniqueid)
         dispatcher.utter_message(f'Sería dentro de los 3 proximos días, podría cancelar?')
         return []
 
