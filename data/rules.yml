@@ -69,14 +69,14 @@ rules:
   - rule: fallback
     steps:
       - intent: out_of_scope
-      - action: utter_default_repetir
+      - action: utter_default
 #      - action: action_ask_question3
 #      - action: action_hello2
 
   - rule: fallback
     steps:
       - intent: nlu_fallback
-      - action: utter_default
+      - action: utter_default_repetir
 
 #  - rule: space
 #    steps:

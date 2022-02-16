@@ -431,7 +431,7 @@ class ActionConoce(Action):
         return "action_quien"
 
     def run(self, dispatcher, tracker, domain):
-        dispatcher.utter_message(f'hablo con {nombre}?')
+        dispatcher.utter_message(f'{nombre}?')
         return []
 
 class ActionDonde(Action):
