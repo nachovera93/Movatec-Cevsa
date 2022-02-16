@@ -203,6 +203,7 @@ class ActionQuestion(Action):
        uniqueid = tracker.sender_id
        print("Dia de hoy : ", 1) 
        progreso(1,razon,compromiso_p,derivacion,fecha_com,"No",uniqueid)
+       llamarDB(uniqueid)
        print("Dia de hoy : ", 2)
        #today_date = date.today()
        #print("Dia de hoy : ", today_date)
@@ -226,6 +227,7 @@ class ActionSiPaga(Action):
         global uniqueid
         uniqueid = tracker.sender_id
         progreso(2,razon,compromiso_p,derivacion,fecha_com,"Si",uniqueid)
+        llamarDB(uniqueid)
         today_date = date.today()
         print("Dia de hoy : ", today_date)
         td = timedelta(3)
@@ -258,6 +260,7 @@ class ActionNoPaga(Action):
         global uniqueid
         uniqueid = tracker.sender_id
         progreso(4,razon,4,derivacion,fecha_com,"Si",uniqueid)
+        llamarDB(uniqueid)
         global SiPaga
         SiPaga=0
         dispatcher.utter_message(f"¿Desea que uno de nuestros ejecutivos se contacte con usted para poder entregarle otras alternativas?")
@@ -276,6 +279,7 @@ class ActionContact(Action):
     def run(self, dispatcher, tracker, domain):
         global uniqueid
         uniqueid = tracker.sender_id
+        llamarDB(uniqueid)
         dispatcher.utter_message(f'Muchas gracias, lo estará contactando uno de nuestros Ejecutivos | EXIT')
         print("Si paga: ",SiPaga)
         if(SiPaga==1):
@@ -298,6 +302,7 @@ class ActionGetGoodBye(Action):
     def run(self, dispatcher, tracker, domain):
         global uniqueid
         uniqueid = tracker.sender_id
+        llamarDB(uniqueid)
         dispatcher.utter_message(f'Muchas gracias por su tiempo, que tenga un buen día | EXIT')
         if (SiPaga==1):
             progreso(3,razon,3,"No",fechaPago,"Si",uniqueid)
@@ -321,7 +326,8 @@ class ActionConoce0(Action):
     def run(self, dispatcher, tracker, domain):
         global uniqueid
         uniqueid = tracker.sender_id
-        progreso(7,razon,compromiso_p,derivacion,fecha_com,"No",uniqueid)
+        #progreso(7,razon,compromiso_p,derivacion,fecha_com,"No",uniqueid)
+        llamarDB(uniqueid)
         dispatcher.utter_message(f'Disculpe, usted conoce a {nombre}?')
         progreso(5,razon,compromiso_p,derivacion,fecha_com,entrega_info,uniqueid)
         return []
@@ -334,10 +340,112 @@ class ActionSiConoce(Action):
     def run(self, dispatcher, tracker, domain):
         global uniqueid
         uniqueid = tracker.sender_id
-        progreso(5,razon,compromiso_p,derivacion,fecha_com,entrega_info,uniqueid)
+        #progreso(5,razon,compromiso_p,derivacion,fecha_com,entrega_info,uniqueid)
+        llamarDB(uniqueid)
         dispatcher.utter_message(f'Por encargo de Cevsa, le agradecemos que {primernombre} se contacte con nosotros al Whatsapp 941111972, repito 941111972. Gracias | EXIT')
         progreso(6,razon,compromiso_p,derivacion,fecha_com,"Si",uniqueid)
         return []
+
+
+###############################################
+################### Restart ###################
+###############################################
+
+class ActionRestart2(Action):
+    """Resets the tracker to its initial state.
+    Utters the restart template if available."""
+
+    def name(self) -> Text:
+        return "action_restart2"
+
+    async def run(self, dispatcher, tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        #global uniqueid
+        #uniqueid = tracker.sender_id
+        return [Restarted()]
+
+##########################
+########## Final #########
+##########################
+class Final(Action):
+    def name(self):   
+        return "action_final"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        #database.close()
+        #global SiPaga
+        #SiPaga=None
+        print("Exit")
+        #dispatcher.utter_message(f'Exit')
+        return []
+
+
+###############################
+####### Preguntas Usuario #####
+###############################
+
+class ActionConoce(Action):
+    def name(self):
+        return "action_quien"
+
+    def run(self, dispatcher, tracker, domain):
+        global uniqueid
+        uniqueid = tracker.sender_id
+        #progreso(7,razon,compromiso_p,derivacion,fecha_com,"No",uniqueid)
+        llamarDB(uniqueid)
+        dispatcher.utter_message(f'{nombre}?')
+        return []
+
+class ActionDonde(Action):
+    def name(self):
+        return "action_donde"
+
+    def run(self, dispatcher, tracker, domain):
+        global uniqueid
+        uniqueid = tracker.sender_id
+        #progreso(7,razon,compromiso_p,derivacion,fecha_com,"No",uniqueid)
+        llamarDB(uniqueid)
+        dispatcher.utter_message(f'Nos estamos comunicando por encargo de Cevsa')
+        return []
+
+class ActionDonde2(Action):
+    def name(self):
+        return "action_donde2"
+
+    def run(self, dispatcher, tracker, domain):
+        global uniqueid
+        uniqueid = tracker.sender_id
+        #progreso(2,razon,compromiso_p,derivacion,fecha_com,"Si",uniqueid)
+        llamarDB(uniqueid)
+        dispatcher.utter_message(f'Estamos llamando por encargo de Cevsa, podrá pagar dentro de los 3 proximos días?')
+        return []
+
+class ActionMonto(Action):
+    def name(self):
+        return "action_monto"
+
+    def run(self, dispatcher, tracker, domain):
+        global uniqueid
+        uniqueid = tracker.sender_id
+        #progreso(2,razon,compromiso_p,derivacion,fecha_com,"Si",uniqueid)
+        llamarDB(uniqueid)
+        dispatcher.utter_message(f'El monto adeudado es de {monto} pesos, podrá pagar dentro de los 3 proximos días?')
+        return []
+
+class FechaVencimiento(Action):
+    def name(self):
+        return "action_fecha"
+
+    def run(self, dispatcher, tracker, domain):
+        global uniqueid
+        uniqueid = tracker.sender_id
+        #progreso(2,razon,compromiso_p,derivacion,fecha_com,"Si",uniqueid)
+        llamarDB(uniqueid)
+        dispatcher.utter_message(f'Sería dentro de los 3 proximos días, podría cancelar?')
+        return []
+
 
 ######################################
 ###### Action Guardar Slots ##########
@@ -406,99 +514,6 @@ class ActionRecibirAutorizaoNo(Action):
             #dispatcher.utter_message(text=f"Razón: {Razón}")
         return []
 
-###############################################
-################### Restart ###################
-###############################################
-
-class ActionRestart2(Action):
-    """Resets the tracker to its initial state.
-    Utters the restart template if available."""
-
-    def name(self) -> Text:
-        return "action_restart2"
-
-    async def run(self, dispatcher, tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        global uniqueid
-        uniqueid = tracker.sender_id
-        return [Restarted()]
-
-##########################
-########## Final #########
-##########################
-class Final(Action):
-    def name(self):   
-        return "action_final"
-
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        #database.close()
-        #global SiPaga
-        #SiPaga=None
-        print("Exit")
-        #dispatcher.utter_message(f'Exit')
-        return []
-
-
-###############################
-####### Preguntas Usuario #####
-###############################
-
-class ActionConoce(Action):
-    def name(self):
-        return "action_quien"
-
-    def run(self, dispatcher, tracker, domain):
-        global uniqueid
-        uniqueid = tracker.sender_id
-        progreso(7,razon,compromiso_p,derivacion,fecha_com,"No",uniqueid)
-        dispatcher.utter_message(f'{nombre}?')
-        return []
-
-class ActionDonde(Action):
-    def name(self):
-        return "action_donde"
-
-    def run(self, dispatcher, tracker, domain):
-        global uniqueid
-        uniqueid = tracker.sender_id
-        progreso(7,razon,compromiso_p,derivacion,fecha_com,"No",uniqueid)
-        dispatcher.utter_message(f'Nos estamos comunicando por encargo de Cevsa')
-        return []
-
-class ActionDonde2(Action):
-    def name(self):
-        return "action_donde2"
-
-    def run(self, dispatcher, tracker, domain):
-        global uniqueid
-        uniqueid = tracker.sender_id
-        progreso(2,razon,compromiso_p,derivacion,fecha_com,"Si",uniqueid)
-        dispatcher.utter_message(f'Estamos llamando por encargo de Cevsa, podrá pagar dentro de los 3 proximos días?')
-        return []
-
-class ActionMonto(Action):
-    def name(self):
-        return "action_monto"
-
-    def run(self, dispatcher, tracker, domain):
-        global uniqueid
-        uniqueid = tracker.sender_id
-        progreso(2,razon,compromiso_p,derivacion,fecha_com,"Si",uniqueid)
-        dispatcher.utter_message(f'El monto adeudado es de {monto} pesos, podrá pagar dentro de los 3 proximos días?')
-        return []
-
-class FechaVencimiento(Action):
-    def name(self):
-        return "action_fecha"
-
-    def run(self, dispatcher, tracker, domain):
-        global uniqueid
-        uniqueid = tracker.sender_id
-        progreso(2,razon,compromiso_p,derivacion,fecha_com,"Si",uniqueid)
-        dispatcher.utter_message(f'Sería dentro de los 3 proximos días, podría cancelar?')
-        return []
 
 ####################
 ##### Dar Hora #####
