@@ -7,29 +7,29 @@ stories:
     - intent: saludos
     - action: action_hello
     - intent: negación
-#      entities:
-#      - respuesta: no
-#    - action: persona_form
-#    - active_loop: persona_form
-#    - slot_was_set:
-#      - es_o_no: no
-#    - slot_was_set:
-#      - requested_slot: null
-#    - active_loop: null
+      entities:
+      - respuesta: no
+    - action: persona_form
+    - active_loop: persona_form
+    - slot_was_set:
+      - es_o_no: no
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
     - action: action_conoce
     - intent: afirmación
-#      entities:
-#      - respuesta: si
-#    - action: lo_conoce_form
-#    - active_loop: lo_conoce_form
-#    - slot_was_set:
-#      - conoce_o_no: si
-#    - slot_was_set:
-#      - requested_slot: null
-#    - active_loop: null
+      entities:
+      - respuesta: si
+    - action: lo_conoce_form
+    - active_loop: lo_conoce_form
+    - slot_was_set:
+      - conoce_o_no: si
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
     - action: action_si_conoce
-#    - action: action_recibir_es_o_no
-#    - action: action_guardar_conoce_o_no
+    - action: action_recibir_es_o_no
+    - action: action_guardar_conoce_o_no
     - action: action_final
     - action: action_restart2
 
@@ -39,29 +39,29 @@ stories:
     - intent: saludos
     - action: action_hello
     - intent: negación
-#      entities:
-#      - respuesta: no 
-#    - action: persona_form
-#    - active_loop: persona_form
-#    - slot_was_set:
-#      - es_o_no: no
-#    - slot_was_set:
-#      - requested_slot: null
-#    - active_loop: null
+      entities:
+      - respuesta: no 
+    - action: persona_form
+    - active_loop: persona_form
+    - slot_was_set:
+      - es_o_no: no
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
     - action: action_conoce
     - intent: negación
-#      entities:
-#      - respuesta: no
-#    - action: lo_conoce_form
-#    - active_loop: lo_conoce_form
-#    - slot_was_set:
-#      - conoce_o_no: no 
-#    - slot_was_set:
-#      - requested_slot: null
-#    - active_loop: null
+      entities:
+      - respuesta: no
+    - action: lo_conoce_form
+    - active_loop: lo_conoce_form
+    - slot_was_set:
+      - conoce_o_no: no 
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
     - action: utter_despedida
-#    - action: action_recibir_es_o_no
-#    - action: action_guardar_conoce_o_no
+    - action: action_recibir_es_o_no
+    - action: action_guardar_conoce_o_no
     - action: action_final
     - action: action_restart2
 
@@ -71,41 +71,41 @@ stories:
     - intent: saludos
     - action: action_hello
     - intent: afirmación
-#      entities:
-#      - respuesta: si
-#    - action: persona_form
-#    - active_loop: persona_form
-#    - slot_was_set:
-#      - es_o_no: si
-#    - slot_was_set:
-#      - requested_slot: null
-#    - active_loop: null
+      entities:
+      - respuesta: si
+    - action: persona_form
+    - active_loop: persona_form
+    - slot_was_set:
+      - es_o_no: si
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
     - action: action_ask_question
     - intent: afirmación
-#      entities:
-#      - respuesta: si
-#    - action: paga_form
-#    - active_loop: paga_form
-#    - slot_was_set:
-#      - pagará_o_no: si
-#    - slot_was_set:
-#      - requested_slot: null
-#    - active_loop: null
+      entities:
+      - respuesta: si
+    - action: paga_form
+    - active_loop: paga_form
+    - slot_was_set:
+      - pagará_o_no: si
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
     - action: action_si_paga
     - intent: afirmación
-#      entities:
-#      - respuesta: si
-#    - action: autoriza_form
-#    - active_loop: autoriza_form
-#    - slot_was_set:
-#      - autoriza_o_no: si
-#    - slot_was_set:
-#      - requested_slot: null
-#    - active_loop: null
+      entities:
+      - respuesta: si
+    - action: autoriza_form
+    - active_loop: autoriza_form
+    - slot_was_set:
+      - autoriza_o_no: si
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
     - action: action_contactar
-#    - action: action_recibir_es_o_no
-#    - action: action_recibir_paga_o_no
-#    - action: action_autoriza_o_no
+    - action: action_recibir_es_o_no
+    - action: action_recibir_paga_o_no
+    - action: action_autoriza_o_no
     - action: action_final
     - action: action_restart2
  
@@ -115,41 +115,41 @@ stories:
     - intent: saludos
     - action: action_hello
     - intent: afirmación
-#      entities:
-#      - respuesta: si
-#    - action: persona_form
-#    - active_loop: persona_form
-#    - slot_was_set:
-#      - es_o_no: si
-#    - slot_was_set:
-#      - requested_slot: null
-#    - active_loop: null
+      entities:
+      - respuesta: si
+    - action: persona_form
+    - active_loop: persona_form
+    - slot_was_set:
+      - es_o_no: si
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
     - action: action_ask_question
     - intent: afirmación
-#      entities:
-#      - respuesta: si
-#    - action: paga_form
-#    - active_loop: paga_form
-#    - slot_was_set:
-#      - pagará_o_no: si
-#    - slot_was_set:
-#      - requested_slot: null
-#    - active_loop: null
+      entities:
+      - respuesta: si
+    - action: paga_form
+    - active_loop: paga_form
+    - slot_was_set:
+      - pagará_o_no: si
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
     - action: action_si_paga
     - intent: negación
-#      entities:
-#      - respuesta: no
-#    - action: autoriza_form
-#    - active_loop: autoriza_form
-#    - slot_was_set:
-#      - autoriza_o_no: no
-#    - slot_was_set:
-#      - requested_slot: null
-#    - active_loop: null
+      entities:
+      - respuesta: no
+    - action: autoriza_form
+    - active_loop: autoriza_form
+    - slot_was_set:
+      - autoriza_o_no: no
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
     - action: action_despedida
-#    - action: action_recibir_es_o_no
-#    - action: action_recibir_paga_o_no
-#    - action: action_autoriza_o_no
+    - action: action_recibir_es_o_no
+    - action: action_recibir_paga_o_no
+    - action: action_autoriza_o_no
     - action: action_final
     - action: action_restart2
 
@@ -158,41 +158,41 @@ stories:
     - intent: saludos
     - action: action_hello
     - intent: afirmación
-#      entities:
-#      - respuesta: si
-#    - action: persona_form
-#    - active_loop: persona_form
-#    - slot_was_set:
-#      - es_o_no: si
-#    - slot_was_set:
-#      - requested_slot: null
-#    - active_loop: null
+      entities:
+      - respuesta: si
+    - action: persona_form
+    - active_loop: persona_form
+    - slot_was_set:
+      - es_o_no: si
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
     - action: action_ask_question
     - intent: negación
-#      entities:
-#      - respuesta: no
-#    - action: paga_form
-#    - active_loop: paga_form
-#    - slot_was_set:
-#      - pagará_o_no: no
-#    - slot_was_set:
-#      - requested_slot: null
-#    - active_loop: null
+      entities:
+      - respuesta: no
+    - action: paga_form
+    - active_loop: paga_form
+    - slot_was_set:
+      - pagará_o_no: no
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
     - action: action_no_paga
     - intent: negación
-#      entities:
-#      - respuesta: no
-#    - action: autoriza_form
-#    - active_loop: autoriza_form
-#    - slot_was_set:
-#      - autoriza_o_no: no
-#    - slot_was_set:
-#      - requested_slot: null
-#    - active_loop: null
+      entities:
+      - respuesta: no
+    - action: autoriza_form
+    - active_loop: autoriza_form
+    - slot_was_set:
+      - autoriza_o_no: no
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
     - action: action_despedida
-#    - action: action_recibir_es_o_no
-#    - action: action_recibir_paga_o_no
-#    - action: action_autoriza_o_no
+    - action: action_recibir_es_o_no
+    - action: action_recibir_paga_o_no
+    - action: action_autoriza_o_no
     - action: action_final
     - action: action_restart2
 
@@ -201,41 +201,41 @@ stories:
     - intent: saludos
     - action: action_hello
     - intent: afirmación
-#      entities:
-#      - respuesta: si
-#    - action: persona_form
-#    - active_loop: persona_form
-#    - slot_was_set:
-#      - es_o_no: si
-#    - slot_was_set:
-#      - requested_slot: null
-#    - active_loop: null
+      entities:
+      - respuesta: si
+    - action: persona_form
+    - active_loop: persona_form
+    - slot_was_set:
+      - es_o_no: si
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
     - action: action_ask_question
     - intent: negación
-#      entities:
-#      - respuesta: no
-#    - action: paga_form
-#    - active_loop: paga_form
-#    - slot_was_set:
-#      - pagará_o_no: no
-#    - slot_was_set:
-#      - requested_slot: null
-#    - active_loop: null
+      entities:
+      - respuesta: no
+    - action: paga_form
+    - active_loop: paga_form
+    - slot_was_set:
+      - pagará_o_no: no
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
     - action: action_no_paga
     - intent: afirmación
-#      entities:
-#      - respuesta: si
-#    - action: autoriza_form
-#    - active_loop: autoriza_form
-#    - slot_was_set:
-#      - autoriza_o_no: si
-#    - slot_was_set:
-#      - requested_slot: null
-#    - active_loop: null
+      entities:
+      - respuesta: si
+    - action: autoriza_form
+    - active_loop: autoriza_form
+    - slot_was_set:
+      - autoriza_o_no: si
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
     - action: action_contactar
-#    - action: action_recibir_es_o_no
-#    - action: action_recibir_paga_o_no
-#    - action: action_autoriza_o_no
+    - action: action_recibir_es_o_no
+    - action: action_recibir_paga_o_no
+    - action: action_autoriza_o_no
     - action: action_final
     - action: action_restart2
 

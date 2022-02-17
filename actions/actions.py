@@ -158,21 +158,20 @@ class ActionHello(Action):
         #database = DataBase()
         global uniqueid
         uniqueid = tracker.sender_id
-        TipoContacto(uniqueid)
+        #TipoContacto(uniqueid)
         #uniqueid = 565408
         llamarDB(uniqueid)
-        dispatcher.utter_message(f'tipo de contacto 1: {tipo_contact}')
-        if (tipo_contact=="7" or tipo_contact==None):
-           t = datetime.datetime.now()
-           print("hora :",t)
-           if 23 >= int(t.hour) >= 12:
-                dispatcher.utter_message(f'Buenas tardes, nos comunicamos por encargo de Cevsa, es usted {nombre}?')
-           else:
-                dispatcher.utter_message(f'Buenos días, nos comunicamos por encargo de Cevsa, es usted {nombre}?') 
-           progreso(7,razon,compromiso_p,derivacion,fecha_com,"No",uniqueid)
-           TipoContacto(uniqueid)
-           dispatcher.utter_message(f'tipo de contacto 2: {tipo_contact}')
-           return []
+        #dispatcher.utter_message(f'tipo de contacto 1: {tipo_contact}')
+        #if (tipo_contact=="7" or tipo_contact==None):
+        progreso(7,razon,compromiso_p,derivacion,fecha_com,"No",uniqueid)
+        t = datetime.datetime.now()
+        if 23 >= int(t.hour) >= 12:
+             dispatcher.utter_message(f'Buenas tardes, nos comunicamos por encargo de Cevsa, es usted {nombre}?')
+        else:
+             dispatcher.utter_message(f'Buenos días, nos comunicamos por encargo de Cevsa, es usted {nombre}?') 
+           #TipoContacto(uniqueid)
+           #dispatcher.utter_message(f'tipo de contacto 2: {tipo_contact}')
+           
         return []
            
 
@@ -204,7 +203,8 @@ class ActionQuestion(Action):
      
         global uniqueid
         uniqueid = tracker.sender_id
-        TipoContacto(uniqueid)
+        #TipoContacto(uniqueid)
+        #if (tipo_contact=="7"):
         progreso(1,razon,compromiso_p,derivacion,fecha_com,"No",uniqueid)
         llamarDB(uniqueid)
         dispatcher.utter_message(f'Le informamos que tenemos aprobado un descuento especial por credito cedido de {Campania} que se encuentra en mora por un monto adeudado de {monto} pesos, quedando a pagar tan solo {oferta} pesos. ¿Puede realizar el pago dentro de los proximos 3 días?') 
@@ -224,8 +224,9 @@ class ActionSiPaga(Action):
         global uniqueid
         uniqueid = tracker.sender_id
         llamarDB(uniqueid)
+        #TipoContacto(uniqueid)
+        #if (tipo_contact=="2"):
         today_date = date.today()
-        print("Dia de hoy : ", today_date)
         td = timedelta(3)
         global fechaPago
         fechaPago=(today_date + td)
@@ -253,8 +254,10 @@ class ActionNoPaga(Action):
     def run(self, dispatcher, tracker, domain):
         global uniqueid
         uniqueid = tracker.sender_id
+        #TipoContacto(uniqueid)
+        #if (tipo_contact=="2"):
+           #llamarDB(uniqueid)
         progreso(4,razon,4,derivacion,fecha_com,"Si",uniqueid)
-        llamarDB(uniqueid)
         dispatcher.utter_message(f"¿Desea que uno de nuestros ejecutivos se contacte con usted para poder entregarle otras alternativas?")
         return []
 
@@ -272,9 +275,10 @@ class ActionContact(Action):
         uniqueid = tracker.sender_id
         llamarDB(uniqueid)
         dispatcher.utter_message(f'Muchas gracias, lo estará contactando uno de nuestros Ejecutivos | EXIT')
-        if(SiPaga==1):
+        TipoContacto(uniqueid)
+        if (tipo_contact=="3"):
             progreso(3,razon,3,"Si",fechaPago,"Si",uniqueid)
-        elif(SiPaga==0):
+        elif(tipo_contact=="4"):
             progreso(4,razon,None,"Si",fecha_com,"Si",uniqueid)
         else:
             print("Nada")
@@ -294,9 +298,10 @@ class ActionGetGoodBye(Action):
         uniqueid = tracker.sender_id
         llamarDB(uniqueid)
         dispatcher.utter_message(f'Muchas gracias por su tiempo, que tenga un buen día | EXIT')
-        if (SiPaga==1):
+        TipoContacto(uniqueid)
+        if (tipo_contact=="3"):
             progreso(3,razon,3,"No",fechaPago,"Si",uniqueid)
-        elif (SiPaga==0):
+        elif (tipo_contact=="4"):
             progreso(4,razon,4,"No",fecha_com,"Si",uniqueid)
         else:
             print("Nada")
