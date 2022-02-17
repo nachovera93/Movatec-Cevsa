@@ -568,6 +568,23 @@ class ActionReceivePersona(Action):
         return []  #devolvemos a slot un string con valor
 
 
+class ResetearSlots(Action):
+
+    def name(self):
+        return "action_restart_slots"
+
+    def run(self, dispatcher, tracker, domain):
+        #global uniqueid
+        #uniqueid = tracker.sender_id
+        #llamarDB(uniqueid)
+        print("Resetear slots")
+        print("es_o_no: ", None)
+        print("conoce_o_no: ", None)
+        print("pagará_o_no: ", None)
+        print("Razón: ", None)
+        return [SlotSet("es_o_no", None),SlotSet("conoce_o_no", None),SlotSet("pagará_o_no", None)]
+
+
 class ResetSlotss(Action):
 
     def name(self):

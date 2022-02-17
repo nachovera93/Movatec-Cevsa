@@ -5,7 +5,7 @@ stories:
   - story: no es y si conoce
     steps:
     - intent: saludos
-#    - action: action_restart
+    - action: action_restart_slots
     - action: action_hello
     - intent: negación
       entities:
@@ -38,7 +38,7 @@ stories:
   - story: no es, no lo conoce
     steps:
     - intent: saludos
-#    - action: action_restart
+    - action: action_restart_slots
     - action: action_hello
     - intent: negación
       entities:
@@ -71,7 +71,7 @@ stories:
   - story: si es, si paga, si autoriza
     steps:
     - intent: saludos
-#    - action: action_restart
+    - action: action_restart_slots
     - action: action_hello
     - intent: afirmación
       entities:
@@ -116,7 +116,7 @@ stories:
   - story: si es, si paga y no autoriza
     steps:
     - intent: saludos
-#    - action: action_restart
+    - action: action_restart_slots
     - action: action_hello
     - intent: afirmación
       entities:
@@ -160,7 +160,7 @@ stories:
   - story: interactive_story_1
     steps:
     - intent: saludos
-#    - action: action_restart
+    - action: action_restart_slots
     - action: action_hello
     - intent: afirmación
       entities:
@@ -204,7 +204,7 @@ stories:
   - story: interactive_story_2
     steps:
     - intent: saludos
-#    - action: action_restart
+    - action: action_restart_slots
     - action: action_hello
     - intent: afirmación
       entities:
@@ -248,6 +248,7 @@ stories:
   - story: interactive_story_3
     steps:
     - action: action_hello2
+    - action: action_restart_slots
     - intent: afirmación
       entities:
       - respuesta: si
@@ -290,6 +291,7 @@ stories:
   - story: interactive_story_4
     steps:
     - action: action_hello2
+    - action: action_restart_slots
     - intent: negación
       entities:
       - respuesta: no
@@ -328,6 +330,7 @@ stories:
   - story: interactive_story_5
     steps:
     - action: action_hello2
+    - action: action_restart_slots
     - intent: negación
       entities:
       - respuesta: no 
