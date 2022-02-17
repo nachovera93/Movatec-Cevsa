@@ -162,7 +162,7 @@ class ActionHello(Action):
         #uniqueid = 565408
         llamarDB(uniqueid)
         dispatcher.utter_message(f'tipo de contacto 1: {tipo_contact}')
-        if (tipo_contact==7 or tipo_contact==None):
+        if (tipo_contact=="7" or tipo_contact==None):
            t = datetime.datetime.now()
            print("hora :",t)
            if 23 >= int(t.hour) >= 12:
@@ -173,7 +173,7 @@ class ActionHello(Action):
            TipoContacto(uniqueid)
            dispatcher.utter_message(f'tipo de contacto 2: {tipo_contact}')
            return []
-        
+        return []
            
 
 
