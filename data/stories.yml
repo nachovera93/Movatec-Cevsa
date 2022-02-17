@@ -248,7 +248,6 @@ stories:
   - story: interactive_story_3
     steps:
     - action: action_hello2
-    - action: action_restart_slots
     - intent: afirmación
       entities:
       - respuesta: si
@@ -291,7 +290,6 @@ stories:
   - story: interactive_story_4
     steps:
     - action: action_hello2
-    - action: action_restart_slots
     - intent: negación
       entities:
       - respuesta: no
@@ -330,7 +328,6 @@ stories:
   - story: interactive_story_5
     steps:
     - action: action_hello2
-    - action: action_restart_slots
     - intent: negación
       entities:
       - respuesta: no 

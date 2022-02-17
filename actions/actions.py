@@ -582,7 +582,8 @@ class ResetearSlots(Action):
         print("conoce_o_no: ", None)
         print("pagará_o_no: ", None)
         print("Razón: ", None)
-        return [SlotSet("es_o_no", None),SlotSet("conoce_o_no", None),SlotSet("pagará_o_no", None)]
+        SlotSet("es_o_no", None)
+        return []
 
 
 class ResetSlotss(Action):
