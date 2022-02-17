@@ -44,20 +44,13 @@ rules:
     steps:
       - intent: out_of_scope
       - action: utter_default
-#      - action: action_ask_question3
-#      - action: action_hello2
+
 
   - rule: fallback2
     steps:
       - intent: nlu_fallback
       - action: utter_default_repetir
 
-#  - rule: space
-#    steps:
-#      - intent: space
-#      - action: utter_default
-#      - action: action_ask_question3
-#      - action: action_hello2
 
   - rule: me repite 1
     steps:

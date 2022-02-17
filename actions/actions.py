@@ -54,10 +54,8 @@ class DataBase:
             Campania = user[9]
             oferta = user[8]
             print("user: ", user)
-            #print("Rut:" , user[0])
             print("Nombre:" , nombre)
             print("Deuda monto:" , monto)
-            #print("fecha Vencimiento: " , fechaVencimiento)
             print("Campaña: " , Campania)
             print("oferta: " , oferta)
             """
@@ -76,7 +74,17 @@ class DataBase:
               
         except Exception as e:
             raise
-
+    def tipo_contacto(self,uniqueid):
+        sql = "SELECT tipo_contacto, max(fecha_llamada) from bot_movatec where lead_id='{}'".format(uniqueid)
+       # sql = "UPDATE usuarios SET name='{}' WHERE id = {}".format(name,id)
+        try:
+            self.cursor.execute(sql)
+            user = self.cursor.fetchone()
+            global tipo_contact
+            tipo_contact = user
+          
+        except Exception as e:
+            raise 
     def update_user(self,tipo_contacto,razon,compromiso_p,derivacion,fecha_com,entrega_info,uniqueid):
         sql = "UPDATE bot_movatec SET tipo_contacto='{}',motivo='{}',compromiso_p='{}',derivacion='{}',fecha_com='{}',entrega_info='{}' WHERE lead_id='{}'".format(tipo_contacto,razon,compromiso_p,derivacion,fecha_com,entrega_info,uniqueid)
        # sql = "UPDATE usuarios SET name='{}' WHERE id = {}".format(name,id)
@@ -95,9 +103,7 @@ class DataBase:
             raise
 
 database = DataBase()
-#database.select_user(94)
-#print("nombre .. :",nombre)
-#print("monto .. :",monto)
+
 
 """
 def variables():
@@ -135,45 +141,37 @@ def ConverterDate():
 
 
 
-class ActionTracker(Action):
-
-    def name(self) -> Text:
-        return "action_tracker_id"
-
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        #database = DataBase()
-        #database.select_user(94)
-            #dispatcher.utter_message(text=f"Razón: {Razón}")
-        return []
-
 def llamarDB(uniqueid):
     database.select_user(uniqueid)
 
 def progreso(tipo_contacto,razon,compromiso_p,derivacion,fecha_com,entrega_info,uniqueid):
     database.update_user(tipo_contacto,razon,compromiso_p,derivacion,fecha_com,entrega_info,uniqueid)
 
-
+def TipoContacto(uniqueid):
+    database.tipo_contacto(uniqueid)
 
 class ActionHello(Action):
     def name(self):
         return "action_hello"
 
     def run(self, dispatcher, tracker, domain):
+        
         global uniqueid
         uniqueid = tracker.sender_id
-        #uniqueid = 565408
-        print("uniqueid: ", tracker.sender_id)
+        #uniqueid = 565408        
         llamarDB(uniqueid)
         t = datetime.datetime.now()
         print("hora :",t)
         if 23 >= int(t.hour) >= 12:
              dispatcher.utter_message(f'Buenas tardes, nos comunicamos por encargo de Cevsa, es usted {nombre}?')
         else:
-             dispatcher.utter_message(f'Buenos días, nos comunicamos por encargo de Cevsa, es usted {nombre}?')
+             dispatcher.utter_message(f'Buenos días, nos comunicamos por encargo de Cevsa, es usted {nombre}?') #
         progreso(7,razon,compromiso_p,derivacion,fecha_com,"No",uniqueid)
+        TipoContacto(uniqueid)
+        dispatcher.utter_message(f'tipo de contacto: {tipo_contact}')
         return []
+        
+           
 
 
 class ActionHello2(Action):
@@ -200,22 +198,16 @@ class ActionQuestion(Action):
         return "action_ask_question"
 
     def run(self, dispatcher, tracker, domain):
-       global uniqueid
-       uniqueid = tracker.sender_id
-       print("Dia de hoy : ", 1) 
-       progreso(1,razon,compromiso_p,derivacion,fecha_com,"No",uniqueid)
-       llamarDB(uniqueid)
-       print("Dia de hoy : ", 2)
-       #today_date = date.today()
-       #print("Dia de hoy : ", today_date)
-       #td = timedelta(3)
-       #print(f'Dia a pagar {(today_date + td).day}')
-       #print(f'Mes a pagar {(today_date + td).month}')
-       #print(f'Año a pagar {(today_date + td).year}') 
-       dispatcher.utter_message(f'Le informamos que tenemos aprobado un descuento especial por credito cedido de {Campania} que se encuentra en mora por un monto adeudado de {monto} pesos, quedando a pagar tan solo {oferta} pesos. ¿Puede realizar el pago dentro de los proximos 3 días?')
-       progreso(2,razon,compromiso_p,derivacion,fecha_com,"Si",uniqueid)
-       return []
-
+     
+        global uniqueid
+        uniqueid = tracker.sender_id
+        progreso(1,razon,compromiso_p,derivacion,fecha_com,"No",uniqueid)
+        llamarDB(uniqueid)
+        dispatcher.utter_message(f'Le informamos que tenemos aprobado un descuento especial por credito cedido de {Campania} que se encuentra en mora por un monto adeudado de {monto} pesos, quedando a pagar tan solo {oferta} pesos. ¿Puede realizar el pago dentro de los proximos 3 días?') #
+        progreso(2,razon,compromiso_p,derivacion,fecha_com,"Si",uniqueid)
+           
+        return []
+       
 ################################################
 ################### Si paga ####################
 ################################################
@@ -227,7 +219,6 @@ class ActionSiPaga(Action):
     def run(self, dispatcher, tracker, domain):
         global uniqueid
         uniqueid = tracker.sender_id
-        progreso(2,razon,compromiso_p,derivacion,fecha_com,"Si",uniqueid)
         llamarDB(uniqueid)
         today_date = date.today()
         print("Dia de hoy : ", today_date)
@@ -243,9 +234,7 @@ class ActionSiPaga(Action):
         print(f'Mes a pagar {(today_date + td).month}')
         print(f'Año a pagar {(today_date + td).year}') 
         dispatcher.utter_message(f"La fecha sería el {dia} de {nombreMes} del {anio}. {primernombre}, ¿Autoriza que uno de nuestros ejecutivos lo contacte para entregarle información de los medios de pago?")
-        progreso(3,razon,3,derivacion,fechaPago,"Si",uniqueid)
-        global SiPaga
-        SiPaga=1
+        progreso(3,razon,3,derivacion,fechaPago,"Si",uniqueid) 
         return []
 
 
@@ -262,10 +251,7 @@ class ActionNoPaga(Action):
         uniqueid = tracker.sender_id
         progreso(4,razon,4,derivacion,fecha_com,"Si",uniqueid)
         llamarDB(uniqueid)
-        global SiPaga
-        SiPaga=0
         dispatcher.utter_message(f"¿Desea que uno de nuestros ejecutivos se contacte con usted para poder entregarle otras alternativas?")
-        
         return []
 
 
@@ -282,7 +268,6 @@ class ActionContact(Action):
         uniqueid = tracker.sender_id
         llamarDB(uniqueid)
         dispatcher.utter_message(f'Muchas gracias, lo estará contactando uno de nuestros Ejecutivos | EXIT')
-        print("Si paga: ",SiPaga)
         if(SiPaga==1):
             progreso(3,razon,3,"Si",fechaPago,"Si",uniqueid)
         elif(SiPaga==0):
@@ -327,7 +312,6 @@ class ActionConoce0(Action):
     def run(self, dispatcher, tracker, domain):
         global uniqueid
         uniqueid = tracker.sender_id
-        #progreso(7,razon,compromiso_p,derivacion,fecha_com,"No",uniqueid)
         llamarDB(uniqueid)
         dispatcher.utter_message(f'Disculpe, usted conoce a {nombre}?')
         progreso(5,razon,compromiso_p,derivacion,fecha_com,entrega_info,uniqueid)
@@ -341,7 +325,6 @@ class ActionSiConoce(Action):
     def run(self, dispatcher, tracker, domain):
         global uniqueid
         uniqueid = tracker.sender_id
-        #progreso(5,razon,compromiso_p,derivacion,fecha_com,entrega_info,uniqueid)
         llamarDB(uniqueid)
         dispatcher.utter_message(f'Por encargo de Cevsa, le agradecemos que {primernombre} se contacte con nosotros al Whatsapp 941111972, repito 941111972. Gracias | EXIT')
         progreso(6,razon,compromiso_p,derivacion,fecha_com,"Si",uniqueid)
@@ -361,8 +344,6 @@ class ActionRestart2(Action):
 
     async def run(self, dispatcher, tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        #global uniqueid
-        #uniqueid = tracker.sender_id
         return [Restarted()]
 
 ##########################
@@ -375,11 +356,7 @@ class Final(Action):
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        #database.close()
-        #global SiPaga
-        #SiPaga=None
         print("Exit")
-        #dispatcher.utter_message(f'Exit')
         return []
 
 
@@ -394,7 +371,6 @@ class ActionConoce(Action):
     def run(self, dispatcher, tracker, domain):
         global uniqueid
         uniqueid = tracker.sender_id
-        #progreso(7,razon,compromiso_p,derivacion,fecha_com,"No",uniqueid)
         llamarDB(uniqueid)
         dispatcher.utter_message(f'{nombre}?')
         return []
@@ -406,7 +382,6 @@ class ActionDonde(Action):
     def run(self, dispatcher, tracker, domain):
         global uniqueid
         uniqueid = tracker.sender_id
-        #progreso(7,razon,compromiso_p,derivacion,fecha_com,"No",uniqueid)
         llamarDB(uniqueid)
         dispatcher.utter_message(f'Nos estamos comunicando por encargo de Cevsa')
         return []
@@ -418,7 +393,6 @@ class ActionDonde2(Action):
     def run(self, dispatcher, tracker, domain):
         global uniqueid
         uniqueid = tracker.sender_id
-        #progreso(2,razon,compromiso_p,derivacion,fecha_com,"Si",uniqueid)
         llamarDB(uniqueid)
         dispatcher.utter_message(f'Estamos llamando por encargo de Cevsa, podrá pagar dentro de los 3 proximos días?')
         return []
@@ -442,7 +416,6 @@ class FechaVencimiento(Action):
     def run(self, dispatcher, tracker, domain):
         global uniqueid
         uniqueid = tracker.sender_id
-        #progreso(2,razon,compromiso_p,derivacion,fecha_com,"Si",uniqueid)
         llamarDB(uniqueid)
         dispatcher.utter_message(f'Sería dentro de los 3 proximos días, podría cancelar?')
         return []
@@ -569,24 +542,6 @@ class ActionReceivePersona(Action):
         return []  #devolvemos a slot un string con valor
 
 
-class ValidateRestaurantForm(FormValidationAction):
-    def name(self) -> Text:
-        return "action_restart_slots"
-
-    async def required_slots(
-        self,
-        domain_slots: List[Text],
-        dispatcher: "CollectingDispatcher",
-        tracker: "Tracker",
-        domain: "DomainDict",
-    ) -> List[Text]:
-        additional_slots = ["es_o_no"]
-        #if tracker.slots.get("outdoor_seating") is True:
-            # If the user wants to sit outside, ask
-            # if they want to sit in the shade or in the sun.
-        additional_slots.append("None")
-
-        return additional_slots
 
 
 class ResetSlotss(Action):
