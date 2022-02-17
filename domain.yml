@@ -37,7 +37,7 @@ responses:
   utter_default:
   - text: Disculpe, ¿Sería tan amable de responder con un si o un no?
   utter_default_repetir:
-  - text: Disculpe, no le entendí ¿Me podrá repetir lo dicho?
+  - text: Disculpe, no le entendí ¿Me podrá repetir lo dicho o responder con un si o un no?
   utter_despedida:
   - text: Muchas gracias por su tiempo, que tenga un buen día. | EXIT
   utter_bot:

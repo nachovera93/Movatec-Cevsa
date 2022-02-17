@@ -30,8 +30,9 @@ nlu:
     - con quien estoy hablando?
 - intent: afirmación
   examples: |
-    - el mismo
-    - cierto
+    - [el mismo](respuesta)
+    - [cierto](respuesta)
+    - [claro](respuesta)
     - [correcto](respuesta)
     - eso suena bien
     - [yes](respuesta)
@@ -63,8 +64,6 @@ nlu:
     - [si](respuesta)
     - [sii](respuesta) porque?
     - [si](respuesta) pero no está
-    - [si](respuesta) con el
-    - [si](respuesta) claro
     - [si](respuesta) dime
     - [si](respuesta) con el
     - ah [bueno](respuesta)
@@ -73,9 +72,7 @@ nlu:
     - [si](respuesta) con el mismo
     - [si](respuesta) con quien
     - que [si](respuesta)
-    - [si](respuesta)
     - [sí](respuesta)
-    - [sí](respuesta) con el
 - intent: negación
   examples: |
     - [negativo](respuesta)
@@ -109,9 +106,7 @@ nlu:
     - [no] lo conozco(respuesta)
     - ah [no](respuesta)
     - [no](respuesta) lo cacho
-    - [no](respuesta)
     - [nó](respuesta)
-    - [nó](respuesta) puedo
 - intent: saludos
   examples: |
     - hola
@@ -182,11 +177,9 @@ nlu:
     - no entendí
     - de nuevo porfavor
     - me repite porfavor?
-    - me repite porfa?
     - no entendí, denuevo  porfa
     - me puede repetir la pregunta?
     - no entendi, denuevo porfa
-    - no entendi, repite porfavor
     - no entendí, repita porfavor
     - me repite porfa
     - como
