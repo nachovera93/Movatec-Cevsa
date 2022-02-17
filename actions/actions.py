@@ -4,6 +4,7 @@ from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker
 from rasa_sdk.events import SlotSet, ActionExecuted, EventType
 from rasa_sdk.executor import CollectingDispatcher
+from rasa_sdk.forms import FormValidationAction
 from rasa_sdk.events import SlotSet
 from rasa_sdk.events import Restarted
 import mysql.connector
@@ -568,22 +569,24 @@ class ActionReceivePersona(Action):
         return []  #devolvemos a slot un string con valor
 
 
-class ResetearSlots(Action):
-
-    def name(self):
+class ValidateRestaurantForm(FormValidationAction):
+    def name(self) -> Text:
         return "action_restart_slots"
 
-    def run(self, dispatcher, tracker, domain):
-        #global uniqueid
-        #uniqueid = tracker.sender_id
-        #llamarDB(uniqueid)
-        print("Resetear slots")
-        print("es_o_no: ", None)
-        print("conoce_o_no: ", None)
-        print("pagará_o_no: ", None)
-        print("Razón: ", None)
-        SlotSet("es_o_no", None)
-        return []
+    async def required_slots(
+        self,
+        domain_slots: List[Text],
+        dispatcher: "CollectingDispatcher",
+        tracker: "Tracker",
+        domain: "DomainDict",
+    ) -> List[Text]:
+        additional_slots = ["es_o_no"]
+        #if tracker.slots.get("outdoor_seating") is True:
+            # If the user wants to sit outside, ask
+            # if they want to sit in the shade or in the sun.
+        additional_slots.append("None")
+
+        return additional_slots
 
 
 class ResetSlotss(Action):

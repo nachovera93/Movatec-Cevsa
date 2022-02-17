@@ -5,10 +5,7 @@ stories:
   - story: no es y si conoce
     steps:
     - intent: saludos
-    - slot_was_set:
-      - es_o_no: None
-    - slot_was_set:
-      - requested_slot: null
+    - action: action_restart_slots
     - action: action_hello
     - intent: negación
       entities:
@@ -41,10 +38,7 @@ stories:
   - story: no es, no lo conoce
     steps:
     - intent: saludos
-    - slot_was_set:
-      - es_o_no: None
-    - slot_was_set:
-      - requested_slot: null
+    - action: action_restart_slots
     - action: action_hello
     - intent: negación
       entities:
@@ -77,10 +71,7 @@ stories:
   - story: si es, si paga, si autoriza
     steps:
     - intent: saludos
-    - slot_was_set:
-      - es_o_no: None
-    - slot_was_set:
-      - requested_slot: null
+    - action: action_restart_slots
     - action: action_hello
     - intent: afirmación
       entities:
@@ -125,10 +116,7 @@ stories:
   - story: si es, si paga y no autoriza
     steps:
     - intent: saludos
-    - slot_was_set:
-      - es_o_no: None
-    - slot_was_set:
-      - requested_slot: null
+    - action: action_restart_slots
     - action: action_hello
     - intent: afirmación
       entities:
@@ -172,10 +160,7 @@ stories:
   - story: interactive_story_1
     steps:
     - intent: saludos
-    - slot_was_set:
-      - es_o_no: None
-    - slot_was_set:
-      - requested_slot: null
+    - action: action_restart_slots
     - action: action_hello
     - intent: afirmación
       entities:
@@ -219,10 +204,7 @@ stories:
   - story: interactive_story_2
     steps:
     - intent: saludos
-    - slot_was_set:
-      - es_o_no: None
-    - slot_was_set:
-      - requested_slot: null
+    - action: action_restart_slots
     - action: action_hello
     - intent: afirmación
       entities:
