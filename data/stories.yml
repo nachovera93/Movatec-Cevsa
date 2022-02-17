@@ -5,13 +5,10 @@ stories:
   - story: no es y si conoce
     steps:
     - intent: saludos
-    - action: persona_form
-    - active_loop: persona_form
     - slot_was_set:
       - es_o_no: None
     - slot_was_set:
       - requested_slot: null
-    - active_loop: null
     - action: action_hello
     - intent: negación
       entities:
@@ -44,13 +41,10 @@ stories:
   - story: no es, no lo conoce
     steps:
     - intent: saludos
-    - action: persona_form
-    - active_loop: persona_form
     - slot_was_set:
       - es_o_no: None
     - slot_was_set:
       - requested_slot: null
-    - active_loop: null
     - action: action_hello
     - intent: negación
       entities:
@@ -83,13 +77,10 @@ stories:
   - story: si es, si paga, si autoriza
     steps:
     - intent: saludos
-    - action: persona_form
-    - active_loop: persona_form
     - slot_was_set:
       - es_o_no: None
     - slot_was_set:
       - requested_slot: null
-    - active_loop: null
     - action: action_hello
     - intent: afirmación
       entities:
@@ -134,13 +125,10 @@ stories:
   - story: si es, si paga y no autoriza
     steps:
     - intent: saludos
-    - action: persona_form
-    - active_loop: persona_form
     - slot_was_set:
       - es_o_no: None
     - slot_was_set:
       - requested_slot: null
-    - active_loop: null
     - action: action_hello
     - intent: afirmación
       entities:
@@ -184,13 +172,10 @@ stories:
   - story: interactive_story_1
     steps:
     - intent: saludos
-    - action: persona_form
-    - active_loop: persona_form
     - slot_was_set:
       - es_o_no: None
     - slot_was_set:
       - requested_slot: null
-    - active_loop: null
     - action: action_hello
     - intent: afirmación
       entities:
@@ -234,13 +219,10 @@ stories:
   - story: interactive_story_2
     steps:
     - intent: saludos
-    - action: persona_form
-    - active_loop: persona_form
     - slot_was_set:
       - es_o_no: None
     - slot_was_set:
       - requested_slot: null
-    - active_loop: null
     - action: action_hello
     - intent: afirmación
       entities:
