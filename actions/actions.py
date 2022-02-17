@@ -155,23 +155,24 @@ class ActionHello(Action):
         return "action_hello"
 
     def run(self, dispatcher, tracker, domain):
-        
+        #database = DataBase()
         global uniqueid
         uniqueid = tracker.sender_id
         TipoContacto(uniqueid)
-        dispatcher.utter_message(f'tipo de contacto 1: {tipo_contact}')
-        #uniqueid = 565408        
+        #uniqueid = 565408
         llamarDB(uniqueid)
-        t = datetime.datetime.now()
-        print("hora :",t)
-        if 23 >= int(t.hour) >= 12:
-             dispatcher.utter_message(f'Buenas tardes, nos comunicamos por encargo de Cevsa, es usted {nombre}?')
-        else:
-             dispatcher.utter_message(f'Buenos días, nos comunicamos por encargo de Cevsa, es usted {nombre}?') 
-        progreso(7,razon,compromiso_p,derivacion,fecha_com,"No",uniqueid)
-        TipoContacto(uniqueid)
-        dispatcher.utter_message(f'tipo de contacto 2: {tipo_contact}')
-        return []
+        dispatcher.utter_message(f'tipo de contacto 1: {tipo_contact}')
+        if (tipo_contact==7 or tipo_contact==None):
+           t = datetime.datetime.now()
+           print("hora :",t)
+           if 23 >= int(t.hour) >= 12:
+                dispatcher.utter_message(f'Buenas tardes, nos comunicamos por encargo de Cevsa, es usted {nombre}?')
+           else:
+                dispatcher.utter_message(f'Buenos días, nos comunicamos por encargo de Cevsa, es usted {nombre}?') 
+           progreso(7,razon,compromiso_p,derivacion,fecha_com,"No",uniqueid)
+           TipoContacto(uniqueid)
+           dispatcher.utter_message(f'tipo de contacto 2: {tipo_contact}')
+           return []
         
            
 
