@@ -81,7 +81,7 @@ class DataBase:
             self.cursor.execute(sql)
             user = self.cursor.fetchone()
             global tipo_contact
-            tipo_contact = user
+            tipo_contact = user[0]
           
         except Exception as e:
             raise 
@@ -158,6 +158,8 @@ class ActionHello(Action):
         
         global uniqueid
         uniqueid = tracker.sender_id
+        TipoContacto(uniqueid)
+        dispatcher.utter_message(f'tipo de contacto 1: {tipo_contact}')
         #uniqueid = 565408        
         llamarDB(uniqueid)
         t = datetime.datetime.now()
@@ -165,10 +167,10 @@ class ActionHello(Action):
         if 23 >= int(t.hour) >= 12:
              dispatcher.utter_message(f'Buenas tardes, nos comunicamos por encargo de Cevsa, es usted {nombre}?')
         else:
-             dispatcher.utter_message(f'Buenos días, nos comunicamos por encargo de Cevsa, es usted {nombre}?') #
+             dispatcher.utter_message(f'Buenos días, nos comunicamos por encargo de Cevsa, es usted {nombre}?') 
         progreso(7,razon,compromiso_p,derivacion,fecha_com,"No",uniqueid)
         TipoContacto(uniqueid)
-        dispatcher.utter_message(f'tipo de contacto: {tipo_contact}')
+        dispatcher.utter_message(f'tipo de contacto 2: {tipo_contact}')
         return []
         
            
@@ -201,9 +203,10 @@ class ActionQuestion(Action):
      
         global uniqueid
         uniqueid = tracker.sender_id
+        TipoContacto(uniqueid)
         progreso(1,razon,compromiso_p,derivacion,fecha_com,"No",uniqueid)
         llamarDB(uniqueid)
-        dispatcher.utter_message(f'Le informamos que tenemos aprobado un descuento especial por credito cedido de {Campania} que se encuentra en mora por un monto adeudado de {monto} pesos, quedando a pagar tan solo {oferta} pesos. ¿Puede realizar el pago dentro de los proximos 3 días?') #
+        dispatcher.utter_message(f'Le informamos que tenemos aprobado un descuento especial por credito cedido de {Campania} que se encuentra en mora por un monto adeudado de {monto} pesos, quedando a pagar tan solo {oferta} pesos. ¿Puede realizar el pago dentro de los proximos 3 días?') 
         progreso(2,razon,compromiso_p,derivacion,fecha_com,"Si",uniqueid)
            
         return []
