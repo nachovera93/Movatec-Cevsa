@@ -1,55 +1,7 @@
 version: "2.0"
 rules:
 
-  - rule: eres bot1?
-    conversation_start: true
-    steps:
-    - intent: saludos
-    - action: action_hello  
-
-  - rule: eres bot1?
-    condition:
-    - slot_was_set:
-      - es_o_no: no
-    steps:
-    - action: action_conoce
-    - intent: afirmación
-      entities:
-      - respuesta: si
-    - action: lo_conoce_form
-    - active_loop: lo_conoce_form
-    - slot_was_set:
-      - conoce_o_no: si
-    - slot_was_set:
-      - requested_slot: null
-    - active_loop: null
-    - action: action_si_conoce
-    - action: action_recibir_es_o_no
-    - action: action_guardar_conoce_o_no
-    - action: action_final
-    - action: action_restart2     
-
-  - rule: eres bot1?
-    condition:
-    - slot_was_set:
-      - es_o_no: si
-    steps:
-    - action: action_conoce
-    - intent: negación
-      entities:
-      - respuesta: no
-    - action: lo_conoce_form
-    - active_loop: lo_conoce_form
-    - slot_was_set:
-      - conoce_o_no: no 
-    - slot_was_set:
-      - requested_slot: null
-    - active_loop: null
-    - action: utter_despedida
-    - action: action_recibir_es_o_no
-    - action: action_guardar_conoce_o_no
-    - action: action_final
-    - action: action_restart2    
+    
  
   - rule: eres bot1?
     steps:
@@ -95,10 +47,10 @@ rules:
       - action: utter_default
 
 
-  - rule: fallback2
-    steps:
-      - intent: nlu_fallback
-      - action: utter_default_repetir
+#  - rule: fallback2
+#    steps:
+#      - intent: nlu_fallback
+#      - action: utter_default_repetir
 
 
   - rule: me repite 1
@@ -195,11 +147,6 @@ rules:
 #      - intent: out_of_scope
 #      - action: action_si_conoce
 
-#  - rule: fallback6
-#    steps:
-#      - action: action_contactar
-#      - intent: out_of_scope
-#      - action: action_contactar
 
 #  - rule: fallback7
 #    steps:
@@ -213,17 +160,6 @@ rules:
 #      - intent: out_of_scope
 #      - action: action_no_paga
 
-#  - rule: fallback9
-#    steps:
-#      - action: action_despedida
-#      - intent: out_of_scope
-#      - action: action_despedida
-
-#  - rule: fallback10
-#    steps:
-#      - action: utter_despedida
-#      - intent: out_of_scope
-#      - action: utter_despedida
 
 
   - rule: pregunta fecha
@@ -254,6 +190,12 @@ rules:
       - intent: de_donde
       - action: action_donde
       - action: action_hello2
+
+  - rule: de que parte llama
+    steps:
+      - intent: de_donde
+      - action: action_donde
+
 
   - rule: de que parte llama2
     steps:

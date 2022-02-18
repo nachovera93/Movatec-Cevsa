@@ -7,6 +7,7 @@ from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.forms import FormValidationAction
 from rasa_sdk.events import SlotSet
 from rasa_sdk.events import Restarted
+from rasa_sdk.events import AllSlotsReset
 import mysql.connector
 import pymysql
 global SiPaga
@@ -155,22 +156,19 @@ class ActionHello(Action):
         return "action_hello"
 
     def run(self, dispatcher, tracker, domain):
-        #database = DataBase()
+        database = DataBase()
         global uniqueid
         uniqueid = tracker.sender_id
-        #TipoContacto(uniqueid)
         #uniqueid = 565408
         llamarDB(uniqueid)
-        #dispatcher.utter_message(f'tipo de contacto 1: {tipo_contact}')
-        #if (tipo_contact=="7" or tipo_contact==None):
+        
         progreso(7,razon,compromiso_p,derivacion,fecha_com,"No",uniqueid)
         t = datetime.datetime.now()
         if 23 >= int(t.hour) >= 12:
              dispatcher.utter_message(f'Buenas tardes, nos comunicamos por encargo de Cevsa, es usted {nombre}?')
         else:
              dispatcher.utter_message(f'Buenos días, nos comunicamos por encargo de Cevsa, es usted {nombre}?') 
-           #TipoContacto(uniqueid)
-           #dispatcher.utter_message(f'tipo de contacto 2: {tipo_contact}')
+           
            
         return []
            
@@ -203,8 +201,6 @@ class ActionQuestion(Action):
      
         global uniqueid
         uniqueid = tracker.sender_id
-        #TipoContacto(uniqueid)
-        #if (tipo_contact=="7"):
         progreso(1,razon,compromiso_p,derivacion,fecha_com,"No",uniqueid)
         llamarDB(uniqueid)
         dispatcher.utter_message(f'Le informamos que tenemos aprobado un descuento especial por credito cedido de {Campania} que se encuentra en mora por un monto adeudado de {monto} pesos, quedando a pagar tan solo {oferta} pesos. ¿Puede realizar el pago dentro de los proximos 3 días?') 
@@ -254,9 +250,7 @@ class ActionNoPaga(Action):
     def run(self, dispatcher, tracker, domain):
         global uniqueid
         uniqueid = tracker.sender_id
-        #TipoContacto(uniqueid)
-        #if (tipo_contact=="2"):
-           #llamarDB(uniqueid)
+        #llamarDB(uniqueid)
         progreso(4,razon,4,derivacion,fecha_com,"Si",uniqueid)
         dispatcher.utter_message(f"¿Desea que uno de nuestros ejecutivos se contacte con usted para poder entregarle otras alternativas?")
         return []
@@ -273,8 +267,8 @@ class ActionContact(Action):
     def run(self, dispatcher, tracker, domain):
         global uniqueid
         uniqueid = tracker.sender_id
-        llamarDB(uniqueid)
         dispatcher.utter_message(f'Muchas gracias, lo estará contactando uno de nuestros Ejecutivos | EXIT')
+        llamarDB(uniqueid)
         TipoContacto(uniqueid)
         if (tipo_contact=="3"):
             progreso(3,razon,3,"Si",fechaPago,"Si",uniqueid)
@@ -296,8 +290,8 @@ class ActionGetGoodBye(Action):
     def run(self, dispatcher, tracker, domain):
         global uniqueid
         uniqueid = tracker.sender_id
-        llamarDB(uniqueid)
         dispatcher.utter_message(f'Muchas gracias por su tiempo, que tenga un buen día | EXIT')
+        llamarDB(uniqueid)
         TipoContacto(uniqueid)
         if (tipo_contact=="3"):
             progreso(3,razon,3,"No",fechaPago,"Si",uniqueid)
@@ -355,6 +349,11 @@ class ActionRestart2(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         return [Restarted()]
 
+class ActionSlotReset(Action):  
+    def name(self):         
+        return 'action_slot_reset'  
+    def run(self, dispatcher, tracker, domain):
+        return[AllSlotsReset()]
 ##########################
 ########## Final #########
 ##########################

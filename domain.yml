@@ -77,6 +77,8 @@ actions:
 - utter_default_repetir
 - utter_despedida
 - utter_pregunta_contactar_ejecutivo
+- action_is_logged_in
+- action_slot_reset
 forms:
   persona_form:
     required_slots:

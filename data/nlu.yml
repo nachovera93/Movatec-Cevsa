@@ -73,6 +73,10 @@ nlu:
     - [si](respuesta) con quien
     - que [si](respuesta)
     - [sí](respuesta)
+    - [siiii](respuesta)
+    - [siii](respuesta)
+    - [sii](respuesta)
+    - la verdad es que [si](respuesta)
 - intent: negación
   examples: |
     - [negativo](respuesta)
@@ -107,6 +111,12 @@ nlu:
     - ah [no](respuesta)
     - [no](respuesta) lo cacho
     - [nó](respuesta)
+    - [noooo](respuesta)
+    - [nooo](respuesta)
+    - [noooooo](respuesta)
+    - te dije que [no](respuesta)
+    - te dije que [nooo](respuesta)
+    - la verdad es que [no](respuesta)
 - intent: saludos
   examples: |
     - hola
