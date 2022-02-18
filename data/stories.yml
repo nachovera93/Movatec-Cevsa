@@ -3,9 +3,7 @@ stories:
 
 
   - story: no es y si conoce
-    steps:
-    - intent: saludos
-    - action: action_hello
+    steps:  
     - intent: negación
       entities:
       - respuesta: no
@@ -16,60 +14,56 @@ stories:
     - slot_was_set:
       - requested_slot: null
     - active_loop: null
-    - action: action_conoce
-    - intent: afirmación
-      entities:
-      - respuesta: si
-    - action: lo_conoce_form
-    - active_loop: lo_conoce_form
-    - slot_was_set:
-      - conoce_o_no: si
-    - slot_was_set:
-      - requested_slot: null
-    - active_loop: null
-    - action: action_si_conoce
-    - action: action_recibir_es_o_no
-    - action: action_guardar_conoce_o_no
-    - action: action_final
-    - action: action_restart2
+#    - action: action_conoce
+#    - intent: afirmación
+#      entities:
+#      - respuesta: si
+#    - action: lo_conoce_form
+#    - active_loop: lo_conoce_form
+#    - slot_was_set:
+#      - conoce_o_no: si
+#    - slot_was_set:
+#      - requested_slot: null
+#    - active_loop: null
+#    - action: action_si_conoce
+#    - action: action_recibir_es_o_no
+#    - action: action_guardar_conoce_o_no
+#    - action: action_final
+#    - action: action_restart2
 
 
-  - story: no es, no lo conoce
-    steps:
-    - intent: saludos
-    - action: action_hello
-    - intent: negación
-      entities:
-      - respuesta: no 
-    - action: persona_form
-    - active_loop: persona_form
-    - slot_was_set:
-      - es_o_no: no
-    - slot_was_set:
-      - requested_slot: null
-    - active_loop: null
-    - action: action_conoce
-    - intent: negación
-      entities:
-      - respuesta: no
-    - action: lo_conoce_form
-    - active_loop: lo_conoce_form
-    - slot_was_set:
-      - conoce_o_no: no 
-    - slot_was_set:
-      - requested_slot: null
-    - active_loop: null
-    - action: utter_despedida
-    - action: action_recibir_es_o_no
-    - action: action_guardar_conoce_o_no
-    - action: action_final
-    - action: action_restart2
+#  - story: no es, no lo conoce
+#    steps:
+#    - intent: negación
+#      entities:
+#      - respuesta: no 
+#    - action: persona_form
+#    - active_loop: persona_form
+#    - slot_was_set:
+#      - es_o_no: no
+#    - slot_was_set:
+#      - requested_slot: null
+#    - active_loop: null
+#    - action: action_conoce
+#    - intent: negación
+#      entities:
+#      - respuesta: no
+#    - action: lo_conoce_form
+#    - active_loop: lo_conoce_form
+#    - slot_was_set:
+#      - conoce_o_no: no 
+#    - slot_was_set:
+#      - requested_slot: null
+#    - active_loop: null
+#    - action: utter_despedida
+#    - action: action_recibir_es_o_no
+#    - action: action_guardar_conoce_o_no
+#    - action: action_final
+#    - action: action_restart2
 
 
   - story: si es, si paga, si autoriza
     steps:
-    - intent: saludos
-    - action: action_hello
     - intent: afirmación
       entities:
       - respuesta: si
@@ -112,8 +106,6 @@ stories:
 
   - story: si es, si paga y no autoriza
     steps:
-    - intent: saludos
-    - action: action_hello
     - intent: afirmación
       entities:
       - respuesta: si
@@ -155,8 +147,6 @@ stories:
 
   - story: interactive_story_1
     steps:
-    - intent: saludos
-    - action: action_hello
     - intent: afirmación
       entities:
       - respuesta: si
@@ -198,8 +188,6 @@ stories:
 
   - story: interactive_story_2
     steps:
-    - intent: saludos
-    - action: action_hello
     - intent: afirmación
       entities:
       - respuesta: si
