@@ -140,7 +140,8 @@ def ConverterDate():
 
 #ConverterDate()
 
-
+def abrirDB():
+    database = DataBase()
 
 def llamarDB(uniqueid):
     #database = DataBase()
@@ -159,7 +160,7 @@ class ActionHello(Action):
         return "action_hello"
 
     def run(self, dispatcher, tracker, domain):
-        database = DataBase()
+        abrirDB()
         global uniqueid
         uniqueid = tracker.sender_id
         #uniqueid = 565408
@@ -182,7 +183,7 @@ class ActionHello2(Action):
         return "action_hello2"
 
     def run(self, dispatcher, tracker, domain):
-        database = DataBase()
+        abrirDB()
         global uniqueid
         uniqueid = tracker.sender_id
         #uniqueid = 565408
@@ -321,7 +322,7 @@ class ActionConoce0(Action):
         return "action_conoce"
 
     def run(self, dispatcher, tracker, domain):
-        database = DataBase()
+        abrirDB()
         global uniqueid
         uniqueid = tracker.sender_id
         llamarDB(uniqueid)
@@ -375,7 +376,7 @@ class Final(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         database.close()
-        dispatcher.utter_message("Exit")
+        #dispatcher.utter_message("Exit")
         return []
 
 
@@ -586,4 +587,7 @@ class ResetSlotss(Action):
         print("pagará_o_no: ", None)
         print("Razón: ", None)
         return [SlotSet("es_o_no", None),SlotSet("conoce_o_no", None),SlotSet("pagará_o_no", None),SlotSet("Razón", None)]
+
+
+
 
