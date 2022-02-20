@@ -143,12 +143,15 @@ def ConverterDate():
 
 
 def llamarDB(uniqueid):
+    #database = DataBase()
     database.select_user(uniqueid)
 
 def progreso(tipo_contacto,razon,compromiso_p,derivacion,fecha_com,entrega_info,uniqueid):
+    #database = DataBase()
     database.update_user(tipo_contacto,razon,compromiso_p,derivacion,fecha_com,entrega_info,uniqueid)
 
 def TipoContacto(uniqueid):
+    #database = DataBase()
     database.tipo_contacto(uniqueid)
 
 class ActionHello(Action):
@@ -179,6 +182,7 @@ class ActionHello2(Action):
         return "action_hello2"
 
     def run(self, dispatcher, tracker, domain):
+        database = DataBase()
         global uniqueid
         uniqueid = tracker.sender_id
         #uniqueid = 565408
@@ -198,7 +202,7 @@ class ActionQuestion(Action):
         return "action_ask_question"
 
     def run(self, dispatcher, tracker, domain):
-     
+        #database = DataBase()
         global uniqueid
         uniqueid = tracker.sender_id
         progreso(1,razon,compromiso_p,derivacion,fecha_com,"No",uniqueid)
@@ -217,6 +221,7 @@ class ActionSiPaga(Action):
         return "action_si_paga"
 
     def run(self, dispatcher, tracker, domain):
+        #database = DataBase()
         global uniqueid
         uniqueid = tracker.sender_id
         llamarDB(uniqueid)
@@ -248,6 +253,7 @@ class ActionNoPaga(Action):
         return "action_no_paga"
 
     def run(self, dispatcher, tracker, domain):
+        #database = DataBase()
         global uniqueid
         uniqueid = tracker.sender_id
         #llamarDB(uniqueid)
@@ -265,6 +271,7 @@ class ActionContact(Action):
         return "action_contactar"
 
     def run(self, dispatcher, tracker, domain):
+        #database = DataBase()
         global uniqueid
         uniqueid = tracker.sender_id
         dispatcher.utter_message(f'Muchas gracias, lo estará contactando uno de nuestros Ejecutivos | EXIT')
@@ -288,6 +295,7 @@ class ActionGetGoodBye(Action):
         return "action_despedida"
 
     def run(self, dispatcher, tracker, domain):
+        #database = DataBase()
         global uniqueid
         uniqueid = tracker.sender_id
         dispatcher.utter_message(f'Muchas gracias por su tiempo, que tenga un buen día | EXIT')
@@ -313,6 +321,7 @@ class ActionConoce0(Action):
         return "action_conoce"
 
     def run(self, dispatcher, tracker, domain):
+        database = DataBase()
         global uniqueid
         uniqueid = tracker.sender_id
         llamarDB(uniqueid)
@@ -326,6 +335,7 @@ class ActionSiConoce(Action):
         return "action_si_conoce"
 
     def run(self, dispatcher, tracker, domain):
+        #database = DataBase()
         global uniqueid
         uniqueid = tracker.sender_id
         llamarDB(uniqueid)
@@ -364,7 +374,8 @@ class Final(Action):
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        print("Exit")
+        database.close()
+        dispatcher.utter_message("Exit")
         return []
 
 
@@ -377,6 +388,7 @@ class ActionConoce(Action):
         return "action_quien"
 
     def run(self, dispatcher, tracker, domain):
+        database = DataBase()
         global uniqueid
         uniqueid = tracker.sender_id
         llamarDB(uniqueid)
@@ -414,7 +426,7 @@ class ActionMonto(Action):
         uniqueid = tracker.sender_id
         #progreso(2,razon,compromiso_p,derivacion,fecha_com,"Si",uniqueid)
         llamarDB(uniqueid)
-        dispatcher.utter_message(f'El monto adeudado es de {monto} pesos, con oferta de {oferta} podrá pagar dentro de los 3 proximos días?')
+        dispatcher.utter_message(f'El monto adeudado es de {monto} pesos, con oferta de {oferta}. Podrá pagar dentro de los 3 proximos días?')
         return []
 
 class FechaVencimiento(Action):
@@ -425,7 +437,7 @@ class FechaVencimiento(Action):
         global uniqueid
         uniqueid = tracker.sender_id
         llamarDB(uniqueid)
-        dispatcher.utter_message(f'Sería dentro de los 3 proximos días, podría cancelar?')
+        dispatcher.utter_message(f'La fecha sería el {dia} de {nombreMes} del {anio}, osea dentro de 3 días. Cree que podría cancelar?')
         return []
 
 
