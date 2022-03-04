@@ -283,10 +283,6 @@ stories:
 
 
 
-
-
-
-
   - story: si es, saluda y no es
     steps:
     - intent: saludos

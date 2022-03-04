@@ -18,6 +18,7 @@ intents:
 - me_repite
 - space
 - start
+- que_hora_es
 entities:
 - respuesta
 slots:
@@ -41,9 +42,11 @@ responses:
   utter_despedida:
   - text: Muchas gracias por su tiempo, que tenga un buen día. | EXIT
   utter_bot:
-  - text: Soy Eva, un asistente virtual.
+  - text: nos comunicamos por encargo de Cevsa, soy un asistente virtual.
   utter_pregunta_contactar_ejecutivo:
   - text: ¿Desea que uno de nuestros ejecutivos se contacte con usted para poder entregarle otras alternativas?
+  utter_negación_pago:
+  - text: ¿Podría indicarnos el motivo?
 actions:
 - action_ask_question
 - action_ask_question2
@@ -74,6 +77,7 @@ actions:
 - action_tracker_id
 - utter_bot
 - utter_default
+- utter_negación_pago
 - utter_default_repetir
 - utter_despedida
 - utter_pregunta_contactar_ejecutivo

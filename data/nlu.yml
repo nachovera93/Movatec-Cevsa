@@ -77,6 +77,15 @@ nlu:
     - [siii](respuesta)
     - [sii](respuesta)
     - la verdad es que [si](respuesta)
+    - [con el](respuesta)
+    - [con ella](respuesta)
+    - [ok](respuesta)
+    - [oka](respuesta)
+    - [ti](respuesta)
+    - [tiii](respuesta)
+    - [mande](respuesta)
+    - [mandé](respuesta)
+    - [digame](respuesta)
 - intent: negación
   examples: |
     - [negativo](respuesta)
@@ -201,12 +210,18 @@ nlu:
 
 - intent: out_of_scope
   examples: |
-    - digame
     - cuenteme
     - yo creo
-    - ok
     - ah ya
     - ya
+#    - digame
+- intent: que_hora_es
+  examples: |
+    - que hora es
+    - dame la hora porfavor
+    - cual es el horario
+    - hora porfavor
+    - dime hora
 
 - intent: preguntar_nombre
   examples: |

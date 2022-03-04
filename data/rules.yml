@@ -1,7 +1,11 @@
 version: "2.0"
 rules:
 
-    
+  - rule: fallback2
+    steps:
+      - intent: nlu_fallback
+      - action: utter_default_repetir
+   
  
   - rule: eres bot1?
     steps:
@@ -15,6 +19,7 @@ rules:
       - action: action_ask_question
       - intent: eres_humano
       - action: utter_bot
+      - action: action_ask_question2
       - action: action_ask_question
 
   - rule: eres bot3?
@@ -47,6 +52,10 @@ rules:
       - action: utter_default
 
 
+  - rule: pedir hora
+    steps:
+      - intent: que_hora_es
+      - action: action_dar_hora
 #  - rule: fallback2
 #    steps:
 #      - intent: nlu_fallback
@@ -123,43 +132,6 @@ rules:
       - intent: me_repite
       - action: action_fecha
 
-#  - rule: fallback2
-#    steps:
-#      - action: action_hello
-#      - intent: out_of_scope
-#      - action: action_hello
-
-#  - rule: fallback3
-#    steps:
-#      - action: action_ask_question
-#      - intent: out_of_scope
-#      - action: action_ask_question
-
-#  - rule: fallback4
-#    steps:
-#      - action: action_conoce
-#      - intent: out_of_scope
-#      - action: action_conoce
-
-#  - rule: fallback5
-#    steps:
-#      - action: action_si_conoce
-#      - intent: out_of_scope
-#      - action: action_si_conoce
-
-
-#  - rule: fallback7
-#    steps:
-#      - action: action_si_paga
-#      - intent: out_of_scope
-#      - action: action_si_paga
-
-#  - rule: fallback8
-#    steps:
-#      - action: action_no_paga
-#      - intent: out_of_scope
-#      - action: action_no_paga
-
 
 
   - rule: pregunta fecha
@@ -181,27 +153,39 @@ rules:
     steps:
       - intent: preguntar_nombre
       - action: action_quien
-#      - action: action_ask_question2
-#      - action: action_hello
 
-  - rule: de que parte llama
+
+  - rule: donde 1
+    steps:
+      - action: action_conoce
+      - intent: de_donde
+      - action: action_donde
+      - action: action_conoce
+
+  - rule: donde 2
+    steps:
+      - action: action_ask_question
+      - intent: de_donde
+      - action: action_donde2
+
+  - rule: donde 3
     steps:
       - action: action_hello
       - intent: de_donde
       - action: action_donde
       - action: action_hello2
 
-  - rule: de que parte llama
+  - rule: donde 4
+    steps:
+      - action: utter_negación_pago
+      - intent: de_donde
+      - action: action_donde
+      - action: utter_negación_pago
+
+  - rule: donde 3
     steps:
       - intent: de_donde
       - action: action_donde
-
-
-  - rule: de que parte llama2
-    steps:
-      - action: action_ask_question
-      - intent: de_donde
-      - action: action_donde2
 
 #  - rule: saludos
 #    steps:
