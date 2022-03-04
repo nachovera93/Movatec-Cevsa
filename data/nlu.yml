@@ -28,6 +28,11 @@ nlu:
     - quien eres?
     - quien me habla?
     - con quien estoy hablando?
+    - quien habla
+    - con quien?
+    - disculpa quien habla?
+    - quien me dijo?
+    - con quien
 - intent: afirmación
   examples: |
     - [el mismo](respuesta)

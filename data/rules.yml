@@ -12,7 +12,7 @@ rules:
       - action: action_hello
       - intent: eres_humano
       - action: utter_bot
-      - action: action_hello
+      - action: action_hello2
 
   - rule: eres bot2?
     steps:
@@ -175,12 +175,12 @@ rules:
       - action: action_donde
       - action: action_hello2
 
-  - rule: donde 4
-    steps:
-      - action: utter_negación_pago
-      - intent: de_donde
-      - action: action_donde
-      - action: utter_negación_pago
+#  - rule: donde 4
+#    steps:
+#      - action: utter_negación_pago
+#      - intent: de_donde
+#      - action: action_donde
+#      - action: utter_negación_pago
 
   - rule: donde 3
     steps:
